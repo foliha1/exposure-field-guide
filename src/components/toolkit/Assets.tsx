@@ -1,8 +1,5 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import { supabase } from "@/integrations/supabase/client";
-
-const BUCKET = "brand-assets";
 
 type AssetCard = {
   name: string;
@@ -38,10 +35,6 @@ const assets: AssetCard[] = [
     description: "The full field guide — intent, system, usage, and examples.",
   },
 ];
-
-function getPublicUrl(file: string) {
-  return supabase.storage.from(BUCKET).getPublicUrl(file).data.publicUrl;
-}
 
 export function Assets() {
   return (
