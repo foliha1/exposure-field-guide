@@ -1,52 +1,110 @@
 import { Section } from "./Section";
+import { Reveal } from "./Reveal";
+import { supabase } from "@/integrations/supabase/client";
 
-const files = [
-  { name: "Wordmark", file: "exposure-wordmark.svg", format: "SVG", size: "1 KB" },
-  { name: "Color tokens", file: "exposure-color-tokens.json", format: "JSON", size: "1 KB" },
-  { name: "Full brand kit", file: "exposure-brand-kit.zip", format: "ZIP", size: "1 KB" },
+const BUCKET = "brand-assets";
+
+type AssetCard = {
+  name: string;
+  format: string;
+  file: string;
+  description: string;
+  disabled?: boolean;
+};
+
+const assets: AssetCard[] = [
+  {
+    name: "Logo Pack",
+    format: "SVG · PNG",
+    file: "logo-pack.zip",
+    description: "Wordmark, lockups, and the delta mark. Light and dark variants.",
+  },
+  {
+    name: "Color File",
+    format: "ASE · JSON",
+    file: "color-file.zip",
+    description: "The four-color system as design tokens and a swatch library.",
+  },
+  {
+    name: "Fonts",
+    format: "WOFF2 · OTF",
+    file: "fonts.zip",
+    description: "Canela Light and PP Neue Montreal. Licensed for brand use only.",
+  },
+  {
+    name: "Brand Guide",
+    format: "PDF",
+    file: "brand-guide.pdf",
+    description: "The full field guide — intent, system, usage, and examples.",
+  },
 ];
+
+function getPublicUrl(file: string) {
+  return supabase.storage.from(BUCKET).getPublicUrl(file).data.publicUrl;
+}
 
 export function Assets() {
   return (
     <Section
       id="assets"
-      number="07"
+      number="08"
       label="Assets"
       variant="dark"
       title={<>Take what you <em className="italic">need</em>.</>}
     >
-      <div className="border-y border-ex-white/20">
-        <div className="grid grid-cols-12 gap-6 border-b border-ex-white/15 py-4 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/50">
-          <div className="col-span-6 md:col-span-6">File</div>
-          <div className="col-span-2 hidden md:block">Format</div>
-          <div className="col-span-2 hidden md:block">Size</div>
-          <div className="col-span-6 text-right md:col-span-2">Action</div>
-        </div>
-        {files.map((f) => (
-          <a
-            key={f.file}
-            href={`/downloads/${f.file}`}
-            download
-            className="group grid grid-cols-12 items-center gap-6 border-b border-ex-white/10 py-6 transition-colors duration-150 hover:bg-ex-white/[0.03]"
-          >
-            <div className="col-span-6 md:col-span-6">
-              <div className="font-display text-2xl font-light uppercase">{f.name}</div>
-              <div className="mt-1 font-mono text-xs text-ex-white/50">{f.file}</div>
-            </div>
-            <div className="col-span-2 hidden text-xs text-ex-white/70 md:block">{f.format}</div>
-            <div className="col-span-2 hidden text-xs text-ex-white/70 md:block">{f.size}</div>
-            <div className="col-span-6 text-right md:col-span-2">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-red transition-transform duration-150 group-hover:-translate-y-px">
-                ▲ Download
-              </span>
-            </div>
-          </a>
+      <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-2">
+        {assets.map((a, i) => (
+          <Reveal key={a.file} delay={0.05 + i * 0.04}>
+            <article className="group relative flex h-full flex-col justify-between bg-ex-black p-8 md:p-10">
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
+                  {String(i + 1).padStart(2, "0")} / {a.format}
+                </div>
+                <h3 className="mt-4 font-display text-[clamp(1.75rem,3vw,2.5rem)] font-light uppercase leading-[1.05] tracking-[-0.01em] text-ex-white">
+                  {a.name}
+                </h3>
+                <p className="mt-4 max-w-sm text-[14px] leading-[1.55] text-ex-white/60">
+                  {a.description}
+                </p>
+              </div>
+
+              <div className="mt-10 flex items-center justify-between gap-4">
+                <span className="font-mono text-[11px] text-ex-white/40">{a.file}</span>
+                <DownloadButton file={a.file} disabled={a.disabled} />
+              </div>
+            </article>
+          </Reveal>
         ))}
       </div>
 
-      <p className="mt-10 max-w-xl text-sm leading-relaxed text-ex-white/60">
-        Use the approved files as shipped. If a use case is not covered here, do not improvise — contact the brand team and we'll add it.
+      <p className="mt-12 max-w-xl text-sm leading-relaxed text-ex-white/55">
+        Open access — no email gate. Use the files as shipped. If a use case isn't covered, contact the brand team and we'll add it.
       </p>
     </Section>
+  );
+}
+
+function DownloadButton({ file, disabled }: { file: string; disabled?: boolean }) {
+  if (disabled) {
+    return (
+      <span
+        aria-disabled
+        className="inline-flex items-center gap-2 border border-ex-white/15 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white/30"
+      >
+        ▲ Unavailable
+      </span>
+    );
+  }
+  const url = getPublicUrl(file);
+  return (
+    <a
+      href={url}
+      download={file}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
+    >
+      ▲ Download
+    </a>
   );
 }
