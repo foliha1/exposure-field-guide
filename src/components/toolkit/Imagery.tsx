@@ -2,6 +2,7 @@ import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import p1 from "@/assets/photos/photo-style-1.jpg.asset.json";
 import p2 from "@/assets/photos/photo-style-2.jpg.asset.json";
+import triangleMark from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 const frames = [
   { src: p1.url, caption: "Hands · field" },
