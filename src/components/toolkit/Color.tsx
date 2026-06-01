@@ -91,7 +91,7 @@ export function ColorSection() {
 
       {/* Swatch tiles */}
       <Reveal delay={0.06}>
-        <div className="mt-6 flex h-[240px] w-full md:h-[320px]">
+        <div className="mt-6 grid h-[220px] w-full grid-cols-4 md:h-[280px]">
           {colors.map((c) => (
             <SwatchTile
               key={c.hex}
