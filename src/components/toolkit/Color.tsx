@@ -1,13 +1,71 @@
+import { useState, useCallback } from "react";
 import { Section } from "./Section";
+import { Reveal } from "./Reveal";
 
-const swatches = [
-  { name: "EX Off-Black", hex: "#22211F", rgb: "34 · 33 · 31", role: "Primary ground", token: "--ex-black", fg: "#E7E6E1" },
-  { name: "EX Off-White", hex: "#E7E6E1", rgb: "231 · 230 · 225", role: "Primary ground", token: "--ex-white", fg: "#22211F" },
-  { name: "EX Red", hex: "#E1251B", rgb: "225 · 37 · 27", role: "Accent · CTA · ▲", token: "--ex-red", fg: "#E7E6E1" },
-  { name: "EX Gold", hex: "#CC9933", rgb: "204 · 153 · 51", role: "Rare · once per surface", token: "--ex-gold", fg: "#22211F" },
+const colors = [
+  { name: "EX Off-Black", hex: "#22211F", fr: 40, fg: "#E7E6E1" },
+  { name: "EX Off-White", hex: "#E7E6E1", fr: 40, fg: "#22211F" },
+  { name: "EX Red", hex: "#E1251B", fr: 15, fg: "#E7E6E1" },
+  { name: "EX Gold", hex: "#CC9933", fr: 5, fg: "#22211F" },
 ];
 
+function SwatchTile({
+  name,
+  hex,
+  fr,
+  fg,
+  copied,
+  onCopy,
+}: {
+  name: string;
+  hex: string;
+  fr: number;
+  fg: string;
+  copied: boolean;
+  onCopy: () => void;
+}) {
+  return (
+    <button
+      onClick={onCopy}
+      className="group relative flex flex-col justify-between border-0 p-6 text-left transition-[filter] duration-200 focus:outline-none md:p-8"
+      style={{
+        backgroundColor: hex,
+        color: fg,
+        flex: `${fr} ${fr} 0%`,
+      }}
+    >
+      <span className="text-[10px] font-bold uppercase tracking-[0.28em] opacity-60 transition-opacity duration-200 group-hover:opacity-100">
+        {name}
+      </span>
+
+      <div className="mt-16 md:mt-24">
+        <span
+          className={`block font-display text-[clamp(1.75rem,3.5vw,3rem)] font-light uppercase leading-[1.05] tracking-[-0.02em] transition-opacity duration-150 ${copied ? "opacity-0" : "opacity-100"}`}
+        >
+          {hex}
+        </span>
+        <span
+          className={`absolute bottom-6 left-6 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-8 md:left-8 ${copied ? "opacity-100" : "opacity-0"}`}
+        >
+          Copied
+        </span>
+      </div>
+    </button>
+  );
+}
+
 export function ColorSection() {
+  const [copiedHex, setCopiedHex] = useState<string | null>(null);
+
+  const handleCopy = useCallback(
+    (hex: string) => {
+      navigator.clipboard.writeText(hex).catch(() => {});
+      setCopiedHex(hex);
+      window.setTimeout(() => setCopiedHex((current) => (current === hex ? null : current)), 1200);
+    },
+    []
+  );
+
   return (
     <Section
       id="color"
@@ -16,37 +74,43 @@ export function ColorSection() {
       variant="light"
       title={<>Four colors, <em className="italic">held in ratio</em>.</>}
     >
-      <div className="grid grid-cols-1 gap-px bg-ex-black/15 sm:grid-cols-2 lg:grid-cols-4">
-        {swatches.map((s) => (
-          <div key={s.hex} className="bg-ex-white">
-            <div className="aspect-[4/3] p-6" style={{ backgroundColor: s.hex, color: s.fg }}>
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] opacity-70">{s.token}</div>
-              <div className="mt-auto" />
-            </div>
-            <div className="space-y-2 p-6">
-              <div className="font-display text-xl font-light uppercase">{s.name}</div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-ex-black/60">{s.role}</div>
-              <div className="pt-2 text-xs text-ex-black/70">{s.hex}</div>
-              <div className="text-xs text-ex-black/50">RGB {s.rgb}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Ratio bar */}
+      <Reveal>
+        <div className="mb-3 flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/50">
+            40 / 40 / 15 / 5
+          </span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
+            Red is exact — do not approximate
+          </span>
+        </div>
+        <div className="flex h-1.5 w-full">
+          {colors.map((c) => (
+            <div key={c.hex} style={{ width: `${c.fr}%`, backgroundColor: c.hex }} />
+          ))}
+        </div>
+      </Reveal>
 
-      <div className="mt-12">
-        <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-black/60">
-          Ratio · 40 / 40 / 15 / 5
+      {/* Swatch tiles */}
+      <Reveal delay={0.06}>
+        <div className="mt-6 flex h-[240px] w-full md:h-[320px]">
+          {colors.map((c) => (
+            <SwatchTile
+              key={c.hex}
+              {...c}
+              copied={copiedHex === c.hex}
+              onCopy={() => handleCopy(c.hex)}
+            />
+          ))}
         </div>
-        <div className="flex h-3 w-full overflow-hidden">
-          <div className="h-full" style={{ width: "40%", backgroundColor: "#22211F" }} />
-          <div className="h-full" style={{ width: "40%", backgroundColor: "#E7E6E1", boxShadow: "inset 0 0 0 1px rgba(34,33,31,0.15)" }} />
-          <div className="h-full" style={{ width: "15%", backgroundColor: "#E1251B" }} />
-          <div className="h-full" style={{ width: "5%", backgroundColor: "#CC9933" }} />
-        </div>
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-ex-black/70">
-          Off-black and off-white are co-equal grounds — alternate between them. Red is functional: CTAs, the delta mark, rules. Gold is rare. A single considered touch per surface.
+      </Reveal>
+
+      {/* Caption */}
+      <Reveal delay={0.12}>
+        <p className="mt-10 max-w-xl text-sm leading-relaxed text-ex-black/70">
+          Off-black and off-white are co-equal grounds — alternate between them to create rhythm across surfaces. Red is functional: CTAs, the delta mark, rules, and emphasis only. Gold is rare. One considered touch per surface, never decorative.
         </p>
-      </div>
+      </Reveal>
     </Section>
   );
 }
