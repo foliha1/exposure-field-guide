@@ -2,6 +2,7 @@ import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
+import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 function DownloadStub() {
   return (
@@ -47,16 +48,11 @@ export function Identity() {
 
         <Reveal delay={0.1}>
           <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
-            <svg
-              width="56"
-              height="48"
-              viewBox="0 0 56 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-ex-red"
-            >
-              <path d="M28 0L56 48H0L28 0Z" fill="currentColor" />
-            </svg>
+            <img
+              src={triangle.url}
+              alt="29029 triangle mark"
+              className="h-12 w-auto md:h-14"
+            />
             <DownloadStub />
           </div>
         </Reveal>
