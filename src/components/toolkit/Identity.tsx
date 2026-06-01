@@ -1,16 +1,15 @@
 import { Section } from "./Section";
-import exposureDark from "@/assets/logos/EXPOSURE_Dark.svg.asset.json";
+import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
-import lockupDark from "@/assets/logos/EXPOSURE_Lockup_Dark.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
-import lockupTriDark from "@/assets/logos/EXPOSURE_Lockup-Tri_Dark.svg.asset.json";
-import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
 
-const variants = [
-  { label: "Wordmark", note: "Default mark. Use at small sizes and in horizontal lockups.", light: exposureLight.url, dark: exposureDark.url, size: "w-[180px]" },
-  { label: "Lockup", note: "Wordmark with 'BY 29029'. Use when context for the parent brand is needed.", light: lockupLight.url, dark: lockupDark.url, size: "w-[180px]" },
-  { label: "Lockup + Triangle", note: "The full mark with the delta. Reserved for moments — covers, openings, signature pages.", light: lockupTriLight.url, dark: lockupTriDark.url, size: "w-[150px]" },
-];
+function DownloadStub() {
+  return (
+    <span className="absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/0 transition-colors duration-300 group-hover:text-ex-white/50">
+      Download
+    </span>
+  );
+}
 
 export function Identity() {
   return (
@@ -18,38 +17,74 @@ export function Identity() {
       id="logo"
       number="02"
       label="Logo"
-      variant="light"
+      variant="dark"
       title={<>The <em className="italic">mark</em>.</>}
     >
-      <div className="space-y-px bg-ex-black/15">
-        {variants.map((v) => (
-          <div key={v.label} className="grid grid-cols-1 gap-px bg-ex-black/15 md:grid-cols-3">
-            <div className="bg-ex-white p-8">
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">
-                {v.label}
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-ex-black/70">{v.note}</p>
-            </div>
-            <div className="flex items-center justify-center bg-ex-white p-10">
-              <img src={v.dark} alt={`${v.label} — dark on light`} className={`${v.size} h-auto`} />
-            </div>
-            <div className="flex items-center justify-center bg-ex-black p-10">
-              <img src={v.light} alt={`${v.label} — light on dark`} className={`${v.size} h-auto`} />
-            </div>
+      {/* Primary lockup — large */}
+      <Reveal>
+        <div className="group relative flex items-center justify-center border border-ex-white/15 p-16 md:p-24">
+          <img
+            src={lockupLight.url}
+            alt="EXPOSURE by 29029 — primary lockup"
+            className="w-[280px] md:w-[380px] h-auto"
+          />
+          <DownloadStub />
+        </div>
+      </Reveal>
+
+      {/* Row of marks */}
+      <div className="mt-4 grid grid-cols-1 gap-px md:grid-cols-2">
+        <Reveal delay={0.05}>
+          <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+            <img
+              src={exposureLight.url}
+              alt="EXPOSURE wordmark"
+              className="w-[220px] md:w-[280px] h-auto"
+            />
+            <DownloadStub />
           </div>
-        ))}
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+            <svg
+              width="56"
+              height="48"
+              viewBox="0 0 56 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-ex-red"
+            >
+              <path d="M28 0L56 48H0L28 0Z" fill="currentColor" />
+            </svg>
+            <DownloadStub />
+          </div>
+        </Reveal>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 text-sm leading-relaxed text-ex-black/75 md:grid-cols-2">
-        <p>
-          <span className="mr-3 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">Clear space</span>
-          A minimum of the triangle's height on every side. The mark needs air.
-        </p>
-        <p>
-          <span className="mr-3 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">Minimum size</span>
-          96px wide on digital, 24mm in print. Below that, switch to the wordmark only.
-        </p>
-      </div>
+      {/* Clearspace & don'ts */}
+      <Reveal delay={0.15}>
+        <div className="mt-14 space-y-5">
+          <p className="flex items-start gap-4 text-sm leading-relaxed text-ex-white/65">
+            <span className="shrink-0 pt-0.5 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">
+              Clearspace
+            </span>
+            Minimum one triangle-height of empty space on every side of the mark. No type, imagery, or borders should intrude.
+          </p>
+          <p className="flex items-start gap-4 text-sm leading-relaxed text-ex-white/65">
+            <span className="shrink-0 pt-0.5 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">
+              Color
+            </span>
+            Never recolor the mark. Use the light version on dark grounds and the dark version on light. No gradients, no overlays.
+          </p>
+          <p className="flex items-start gap-4 text-sm leading-relaxed text-ex-white/65">
+            <span className="shrink-0 pt-0.5 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">
+              Proportion
+            </span>
+            Never stretch, compress, rotate, or distort. Scale uniformly from the center only.
+          </p>
+        </div>
+      </Reveal>
     </Section>
   );
 }
