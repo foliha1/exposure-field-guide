@@ -1,4 +1,35 @@
 import { Section } from "./Section";
+import { Reveal } from "./Reveal";
+
+function Specimen({
+  label,
+  spec,
+  family,
+  children,
+  delay = 0,
+}: {
+  label: string;
+  spec: string;
+  family: string;
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div className="group border-t border-ex-black/10 pt-10 md:pt-14">
+        <div className="mb-6 flex flex-col gap-1 md:mb-8">
+          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
+            {label}
+          </span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+            {family} · {spec}
+          </span>
+        </div>
+        {children}
+      </div>
+    </Reveal>
+  );
+}
 
 export function Typography() {
   return (
@@ -6,73 +37,92 @@ export function Typography() {
       id="type"
       number="04"
       label="Typography"
-      variant="dark"
+      variant="light"
       title={<>Two voices, <em className="italic">used quietly</em>.</>}
     >
-      <div className="space-y-16">
-        {/* Display */}
-        <div className="border-t border-ex-white/15 pt-8">
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-3">
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">Display</div>
-              <div className="mt-2 text-xs text-ex-white/60">Canela Light · Light Italic</div>
-              <div className="mt-1 text-xs text-ex-white/60">All caps. Italic on emphasis.</div>
-            </div>
-            <div className="col-span-12 md:col-span-9">
-              <p className="font-display text-[clamp(2rem,5vw,5rem)] font-light uppercase leading-[0.98] tracking-[-0.01em]">
-                Hour <em className="italic">fourteen</em>. The team is still moving.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="space-y-2">
+        {/* H1 / Hero */}
+        <Specimen
+          label="H1 / Hero"
+          spec="72px / 1.0"
+          family="Canela Light"
+        >
+          <p className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light uppercase leading-[1.0] tracking-[-0.02em] text-ex-black">
+            Your team won't be the <em className="italic">same</em>
+          </p>
+        </Specimen>
+
+        {/* H2 / Section heads */}
+        <Specimen
+          label="H2 / Section Head"
+          spec="48px / 1.05"
+          family="Canela Light"
+          delay={0.04}
+        >
+          <p className="font-display text-[clamp(1.75rem,4vw,3rem)] font-light uppercase leading-[1.05] tracking-[-0.02em] text-ex-black">
+            Four colors, <em className="italic">held in ratio</em>
+          </p>
+        </Specimen>
+
+        {/* Pull quote */}
+        <Specimen
+          label="Pull Quote"
+          spec="32px / 1.2"
+          family="Canela Light"
+          delay={0.08}
+        >
+          <p className="font-display text-[clamp(1.25rem,2.5vw,2rem)] font-light leading-[1.2] tracking-[-0.01em] text-ex-black">
+            The point is not the mountain. The point is who you are with each other at <em className="italic">hour fourteen</em>.
+          </p>
+        </Specimen>
+
+        {/* H3 / Block titles */}
+        <Specimen
+          label="H3 / Block Title"
+          spec="22px / 1.3"
+          family="PP Neue Montreal Bold"
+          delay={0.12}
+        >
+          <p className="text-[22px] font-bold leading-[1.3] tracking-[-0.01em] text-ex-black">
+            Exposure exists to develop leaders through endurance
+          </p>
+        </Specimen>
+
+        {/* Eyebrow / Label */}
+        <Specimen
+          label="Eyebrow / Label"
+          spec="13px / 1.4 · tracked 0.28em"
+          family="PP Neue Montreal Bold"
+          delay={0.16}
+        >
+          <p className="text-[13px] font-bold uppercase leading-[1.4] tracking-[0.28em] text-ex-black">
+            Exposure by 29029
+          </p>
+        </Specimen>
 
         {/* Body */}
-        <div className="border-t border-ex-white/15 pt-8">
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-3">
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">Text</div>
-              <div className="mt-2 text-xs text-ex-white/60">PP Neue Montreal Medium · Bold</div>
-            </div>
-            <div className="col-span-12 md:col-span-9 space-y-4">
-              <p className="text-base leading-relaxed text-ex-white/85">
-                The mountain is the medium, not the message. We use sustained physical load to expose how a team actually decides, communicates, and recovers under pressure. The week is built around three controlled exposures, each one harder than the last.
-              </p>
-              <p className="text-sm leading-relaxed text-ex-white/60">
-                Caption / secondary — 14px, 1.6 line-height. Used for footnotes, asset metadata, and supporting facts.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Specimen
+          label="Body"
+          spec="17px / 1.6"
+          family="PP Neue Montreal Regular"
+          delay={0.20}
+        >
+          <p className="max-w-2xl text-[17px] leading-[1.6] tracking-[-0.01em] text-ex-black/80">
+            We put teams under sustained physical and decision-making load — not to break them, but to reveal what they are capable of together. The program compounds: each stage builds on the last, and the effect persists long after the event ends.
+          </p>
+        </Specimen>
 
-        {/* Eyebrow */}
-        <div className="border-t border-ex-white/15 pt-8">
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-3">
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">Eyebrow / Label</div>
-              <div className="mt-2 text-xs text-ex-white/60">PP Neue Montreal Bold · tracked +220</div>
-            </div>
-            <div className="col-span-12 md:col-span-9">
-              <div className="text-[11px] font-bold uppercase tracking-[0.28em] text-ex-white">
-                Section · Module · Field label
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scale */}
-        <div className="grid grid-cols-2 gap-px bg-ex-white/15 sm:grid-cols-4">
-          {[
-            ["Display L", "96 / 96"],
-            ["Display M", "64 / 64"],
-            ["Body L", "18 / 28"],
-            ["Body S", "14 / 22"],
-          ].map(([k, v]) => (
-            <div key={k} className="bg-ex-black p-6">
-              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/50">{k}</div>
-              <div className="mt-2 font-display text-2xl font-light text-ex-white">{v}</div>
-            </div>
-          ))}
-        </div>
+        {/* Caption / Attribution */}
+        <Specimen
+          label="Caption / Attribution"
+          spec="13px / 1.5"
+          family="PP Neue Montreal Regular"
+          delay={0.24}
+        >
+          <p className="text-[13px] leading-[1.5] text-ex-black/50">
+            The 29029 core belief: growth happens under real pressure. Not simulated. Not workshop-grade.
+          </p>
+        </Specimen>
       </div>
     </Section>
   );
