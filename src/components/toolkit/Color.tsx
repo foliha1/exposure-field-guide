@@ -82,9 +82,20 @@ export function ColorSection() {
             Red is exact — do not approximate
           </span>
         </div>
-        <div className="flex h-1.5 w-full">
+        <div className="flex h-10 w-full overflow-hidden">
           {colors.map((c) => (
-            <div key={c.hex} style={{ width: `${c.fr}%`, backgroundColor: c.hex }} />
+            <div
+              key={c.hex}
+              className="flex items-center justify-center"
+              style={{ width: `${c.fr}%`, backgroundColor: c.hex }}
+            >
+              <span
+                className="text-xs font-bold tabular-nums tracking-wider"
+                style={{ color: c.fg }}
+              >
+                {c.fr}%
+              </span>
+            </div>
           ))}
         </div>
       </Reveal>
