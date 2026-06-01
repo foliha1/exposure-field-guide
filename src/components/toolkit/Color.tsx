@@ -11,7 +11,7 @@ export function ColorSection() {
   return (
     <Section
       id="color"
-      number="05"
+      number="03"
       label="Color"
       variant="light"
       title={<>Four colors, <em className="italic">held in ratio</em>.</>}

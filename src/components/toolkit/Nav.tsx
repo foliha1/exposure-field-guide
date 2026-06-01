@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 
 const links = [
   { id: "intent", label: "Intent" },
@@ -50,11 +51,8 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-10">
-        <a
-          href="#top"
-          className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white"
-        >
-          EXPOSURE <span className="text-ex-white/40">/ 29029</span>
+        <a href="#top" className="flex items-center" aria-label="EXPOSURE — top">
+          <img src={exposureLight.url} alt="EXPOSURE" className="h-3 w-auto" />
         </a>
         <nav className="hidden gap-7 md:flex">
           {links.map((l) => {
