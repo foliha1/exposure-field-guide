@@ -16,7 +16,7 @@ export function Identity() {
   return (
     <Section
       id="logo"
-      number="03"
+      number="02"
       label="Logo"
       variant="light"
       title={<>The <em className="italic">mark</em>.</>}

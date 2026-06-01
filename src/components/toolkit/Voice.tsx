@@ -37,7 +37,7 @@ export function Voice() {
   return (
     <Section
       id="voice"
-      number="02"
+      number="06"
       label="Voice & Principles"
       variant="dark"
       title={<>How it <em className="italic">sounds</em>.</>}
