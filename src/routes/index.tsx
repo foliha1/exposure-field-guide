@@ -1,29 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/toolkit/Nav";
+import { Hero } from "@/components/toolkit/Hero";
+import { Intent } from "@/components/toolkit/Intent";
+import { Voice } from "@/components/toolkit/Voice";
+import { Identity } from "@/components/toolkit/Identity";
+import { Typography } from "@/components/toolkit/Typography";
+import { ColorSection } from "@/components/toolkit/Color";
+import { Assets } from "@/components/toolkit/Assets";
+import { Footer } from "@/components/toolkit/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "EXPOSURE by 29029 — Brand Toolkit" },
+      { name: "description", content: "The working brand reference for EXPOSURE by 29029: intent, voice, identity, typography, color, and approved downloadable assets." },
+      { property: "og:title", content: "EXPOSURE by 29029 — Brand Toolkit" },
+      { property: "og:description", content: "Your team won't be the same. The field guide and asset library for EXPOSURE." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen bg-ex-white text-ex-black">
+      <Nav />
+      <Hero />
+      <Intent />
+      <Voice />
+      <Identity />
+      <Typography />
+      <ColorSection />
+      <Assets />
+      <Footer />
+    </main>
   );
 }
