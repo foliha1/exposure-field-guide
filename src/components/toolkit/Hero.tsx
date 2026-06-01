@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
 
 export function Hero() {
   return (
@@ -46,19 +47,18 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex max-w-[1400px] flex-col items-center px-6 pb-16 pt-32 text-center lg:px-10 lg:pt-36 lg:pb-20">
-        {/* Wordmark */}
+        {/* Lockup + triangle — the brand mark */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          <div className="font-sans text-3xl font-bold uppercase tracking-[0.18em] text-ex-white sm:text-4xl">
-            EXPOSURE
-          </div>
-          <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.42em] text-ex-white/70">
-            By 29029
-          </div>
+          <img
+            src={lockupTriLight.url}
+            alt="EXPOSURE by 29029"
+            className="h-auto w-[220px] sm:w-[280px]"
+          />
         </motion.div>
 
         {/* Headline */}
@@ -81,14 +81,12 @@ export function Hero() {
           The EXPOSURE brand, codified. Intent, system, and assets in one place.
         </motion.p>
 
-        {/* Delta mark */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
           className="mt-20 flex flex-col items-center gap-6 sm:mt-24"
         >
-          <span aria-hidden className="text-2xl leading-none text-ex-red">▲</span>
           {/* Scroll cue */}
           <div className="flex flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.32em] text-ex-white/45">
             <span>Scroll</span>
