@@ -12,9 +12,9 @@ function Wordmark({ className = "" }: { className?: string }) {
 export function Identity() {
   return (
     <Section
-      id="identity"
+      id="logo"
       number="03"
-      label="Identity"
+      label="Logo"
       variant="light"
       title={<>The <em className="italic">mark</em>.</>}
     >
