@@ -2,6 +2,7 @@ import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import p1 from "@/assets/photos/photo-style-1.jpg.asset.json";
 import p2 from "@/assets/photos/photo-style-2.jpg.asset.json";
+import triangleMark from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 const frames = [
   { src: p1.url, caption: "Hands · field" },
@@ -46,7 +47,7 @@ export function Imagery() {
               </div>
               <figcaption className="mt-3 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.22em] text-ex-black/50">
                 <span>{String(i + 1).padStart(2, "0")} · {f.caption}</span>
-                <span className="text-ex-red">▲</span>
+                <img src={triangleMark.url} alt="" aria-hidden className="h-2.5 w-auto" />
               </figcaption>
             </figure>
           </Reveal>

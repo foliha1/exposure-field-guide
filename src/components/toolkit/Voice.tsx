@@ -1,4 +1,5 @@
 import { Section } from "./Section";
+import triangleMark from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 const principles = [
   {
@@ -46,8 +47,10 @@ export function Voice() {
         {principles.map((p) => (
           <li key={p.n} className="grid grid-cols-12 gap-6 py-8">
             <div className="col-span-12 md:col-span-1">
-              <span className="font-display text-3xl font-light text-ex-red">▲</span>
-              <span className="ml-2 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/50">{p.n}</span>
+              <span className="inline-flex items-center gap-2">
+                <img src={triangleMark.url} alt="" aria-hidden className="h-5 w-auto" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/50">{p.n}</span>
+              </span>
             </div>
             <div className="col-span-12 md:col-span-4">
               <h3 className="font-display text-2xl font-light uppercase leading-tight">{p.title}</h3>
