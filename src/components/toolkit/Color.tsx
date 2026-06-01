@@ -12,7 +12,6 @@ const colors = [
 function SwatchTile({
   name,
   hex,
-  fr,
   fg,
   copied,
   onCopy,
@@ -27,25 +26,24 @@ function SwatchTile({
   return (
     <button
       onClick={onCopy}
-      className="group relative flex flex-col justify-between border-0 p-6 text-left transition-[filter] duration-200 focus:outline-none md:p-8"
+      className="group relative flex cursor-pointer flex-col justify-between border-0 p-5 text-left transition-[filter,transform] duration-200 hover:brightness-105 focus:outline-none md:p-7"
       style={{
         backgroundColor: hex,
         color: fg,
-        flex: `${fr} ${fr} 0%`,
       }}
     >
       <span className="text-[10px] font-bold uppercase tracking-[0.28em] opacity-60 transition-opacity duration-200 group-hover:opacity-100">
         {name}
       </span>
 
-      <div className="mt-16 md:mt-24">
+      <div className="mt-10 md:mt-14">
         <span
-          className={`block font-display text-[clamp(1.75rem,3.5vw,3rem)] font-light uppercase leading-[1.05] tracking-[-0.02em] transition-opacity duration-150 ${copied ? "opacity-0" : "opacity-100"}`}
+          className={`block font-sans text-lg font-medium leading-[1.2] tracking-normal transition-opacity duration-150 md:text-xl ${copied ? "opacity-0" : "opacity-100"}`}
         >
           {hex}
         </span>
         <span
-          className={`absolute bottom-6 left-6 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-8 md:left-8 ${copied ? "opacity-100" : "opacity-0"}`}
+          className={`absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-7 md:left-7 ${copied ? "opacity-100" : "opacity-0"}`}
         >
           Copied
         </span>
