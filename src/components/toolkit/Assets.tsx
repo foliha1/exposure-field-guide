@@ -40,7 +40,7 @@ export function Assets() {
   return (
     <Section
       id="assets"
-      number="08"
+      number="06"
       label="Assets"
       variant="dark"
       title={<>Take what you <em className="italic">need</em>.</>}

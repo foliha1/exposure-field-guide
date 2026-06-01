@@ -7,7 +7,6 @@ const links = [
   { id: "color", label: "Color" },
   { id: "type", label: "Type" },
   { id: "imagery", label: "Imagery" },
-  { id: "voice", label: "Voice" },
   { id: "assets", label: "Assets" },
 ];
 
