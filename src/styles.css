@@ -4,6 +4,35 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Canela";
+  src: url("./assets/fonts/Canela-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("./assets/fonts/Canela-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("./assets/fonts/PPNeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("./assets/fonts/PPNeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /*
  * Design system definition.
  *
@@ -59,10 +88,20 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-ex-black: var(--ex-black);
+  --color-ex-white: var(--ex-white);
+  --color-ex-red: var(--ex-red);
+  --color-ex-gold: var(--ex-gold);
+  --font-display: "Canela", "Times New Roman", serif;
+  --font-sans: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.625rem;
+  --ex-black: #22211F;
+  --ex-white: #E7E6E1;
+  --ex-red:   #E1251B;
+  --ex-gold:  #CC9933;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -140,5 +179,10 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    scroll-behavior: smooth;
   }
 }
