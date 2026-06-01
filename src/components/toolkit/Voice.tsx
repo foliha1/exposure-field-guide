@@ -1,4 +1,5 @@
 import { Section } from "./Section";
+import triangleMark from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 const principles = [
   {
