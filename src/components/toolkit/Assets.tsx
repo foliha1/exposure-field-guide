@@ -1,8 +1,5 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import { supabase } from "@/integrations/supabase/client";
-
-const BUCKET = "brand-assets";
 
 type AssetCard = {
   name: string;
@@ -38,10 +35,6 @@ const assets: AssetCard[] = [
     description: "The full field guide — intent, system, usage, and examples.",
   },
 ];
-
-function getPublicUrl(file: string) {
-  return supabase.storage.from(BUCKET).getPublicUrl(file).data.publicUrl;
-}
 
 export function Assets() {
   return (
@@ -95,13 +88,10 @@ function DownloadButton({ file, disabled }: { file: string; disabled?: boolean }
       </span>
     );
   }
-  const url = getPublicUrl(file);
   return (
     <a
-      href={url}
+      href={`/downloads/${file}`}
       download={file}
-      target="_blank"
-      rel="noreferrer"
       className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
     >
       ▲ Download
