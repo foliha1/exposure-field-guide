@@ -2,6 +2,7 @@ import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
+import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
 import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 function DownloadStub() {
@@ -34,7 +35,7 @@ export function Identity() {
       </Reveal>
 
       {/* Row of marks */}
-      <div className="mt-4 grid grid-cols-1 gap-px md:grid-cols-2">
+      <div className="mt-4 grid grid-cols-1 gap-px md:grid-cols-3">
         <Reveal delay={0.05}>
           <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
             <img
@@ -47,6 +48,17 @@ export function Identity() {
         </Reveal>
 
         <Reveal delay={0.1}>
+          <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+            <img
+              src={lockupTriLight.url}
+              alt="EXPOSURE lockup + triangle mark"
+              className="w-[220px] md:w-[280px] h-auto"
+            />
+            <DownloadStub />
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.15}>
           <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
             <img
               src={triangle.url}
