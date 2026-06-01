@@ -6,6 +6,7 @@ import { Voice } from "@/components/toolkit/Voice";
 import { Identity } from "@/components/toolkit/Identity";
 import { Typography } from "@/components/toolkit/Typography";
 import { ColorSection } from "@/components/toolkit/Color";
+import { Imagery } from "@/components/toolkit/Imagery";
 import { Assets } from "@/components/toolkit/Assets";
 import { Footer } from "@/components/toolkit/Footer";
 
@@ -27,10 +28,11 @@ function Index() {
       <Nav />
       <Hero />
       <Intent />
-      <Voice />
       <Identity />
-      <Typography />
       <ColorSection />
+      <Typography />
+      <Imagery />
+      <Voice />
       <Assets />
       <Footer />
     </main>
