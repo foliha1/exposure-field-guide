@@ -9,6 +9,7 @@ export function Intent() {
       label="Intent"
       variant="light"
       title={<>Leadership is earned under <em className="italic">real</em> pressure.</>}
+      blurb="EXPOSURE is the leadership program from 29029 — a controlled, sustained exposure to physical and decision-making load. It traces back to the core 29029 belief that growth happens under real pressure, not simulated pressure."
     >
       <div className="mx-auto max-w-3xl">
         <Reveal>
