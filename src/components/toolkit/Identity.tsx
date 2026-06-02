@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
