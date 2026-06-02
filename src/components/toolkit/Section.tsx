@@ -6,6 +6,7 @@ export function Section({
   number,
   label,
   title,
+  blurb,
   variant = "light",
   children,
 }: {
@@ -13,10 +14,12 @@ export function Section({
   number: string;
   label: string;
   title: ReactNode;
+  blurb?: string;
   variant?: "light" | "dark";
   children: ReactNode;
 }) {
   const dark = variant === "dark";
+  const muted = dark ? "text-ex-white/60" : "text-ex-black/60";
   return (
     <section
       id={id}
@@ -26,27 +29,37 @@ export function Section({
           : "border-t border-ex-black/10 bg-ex-white text-ex-black"
       }
     >
-      <div className="mx-auto grid max-w-[1400px] grid-cols-12 gap-6 px-6 py-24 lg:px-12 lg:py-32">
-        <Reveal className="col-span-12 md:col-span-3">
-          <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-4">
-            <span className={`text-[10px] font-bold uppercase tracking-[0.28em] ${dark ? "text-ex-red" : "text-ex-red"}`}>
+      <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-12 lg:py-28">
+        {/* Eyebrow */}
+        <Reveal>
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
               {number}
             </span>
-            <span className={`text-[10px] font-bold uppercase tracking-[0.28em] ${dark ? "text-ex-white/60" : "text-ex-black/60"}`}>
+            <span className={`text-[10px] font-bold uppercase tracking-[0.28em] ${muted}`}>
               {label}
             </span>
           </div>
         </Reveal>
-        <div className="col-span-12 md:col-span-9">
-          <Reveal>
-            <h2 className="font-display text-[clamp(2rem,4.5vw,4rem)] font-light uppercase leading-[1.02] tracking-[-0.01em]">
+
+        {/* Title + Blurb */}
+        <Reveal delay={0.03}>
+          <div className="mt-6 grid grid-cols-12 gap-6">
+            <h2 className="col-span-12 md:col-span-5 font-display text-[clamp(1.5rem,2.5vw,2.25rem)] font-light leading-[1.15] tracking-[-0.01em]">
               {title}
             </h2>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <div className="mt-12">{children}</div>
-          </Reveal>
-        </div>
+            {blurb && (
+              <p className={`col-span-12 md:col-span-6 md:col-start-7 text-[15px] leading-[1.55] ${muted}`}>
+                {blurb}
+              </p>
+            )}
+          </div>
+        </Reveal>
+
+        {/* Content */}
+        <Reveal delay={0.06}>
+          <div className="mt-10">{children}</div>
+        </Reveal>
       </div>
     </section>
   );
