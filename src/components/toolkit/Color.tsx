@@ -112,37 +112,9 @@ export function ColorSection() {
       title={<>Four colors, <em className="italic">held in ratio</em>.</>}
       blurb="A four-color system: off-black and off-white as co-equal grounds, red for emphasis, gold used sparingly. Hold the 40 / 40 / 15 / 5 ratio across any surface — roughly equal black and white, a measured amount of red, only a touch of gold."
     >
-      {/* Ratio bar */}
-      <Reveal>
-        <div className="mb-3 flex items-center justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/50">
-            40 / 40 / 15 / 5
-          </span>
-          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
-            Red is exact — do not approximate
-          </span>
-        </div>
-        <div className="flex h-10 w-full overflow-hidden">
-          {colors.map((c) => (
-            <div
-              key={c.hex}
-              className="flex items-center justify-center"
-              style={{ width: `${c.fr}%`, backgroundColor: c.hex }}
-            >
-              <span
-                className="text-xs font-bold tabular-nums tracking-wider"
-                style={{ color: c.fg }}
-              >
-                {c.fr}%
-              </span>
-            </div>
-          ))}
-        </div>
-      </Reveal>
-
       {/* Swatch tiles — equal flat blocks, 2x2 on small, 4 across on md+ */}
-      <Reveal delay={0.06}>
-        <div ref={gridRef} className="mt-6 grid w-full grid-cols-2 md:grid-cols-4 [&_*]:cursor-none md:cursor-none">
+      <Reveal>
+        <div ref={gridRef} className="grid w-full grid-cols-2 md:grid-cols-4 [&_*]:cursor-none md:cursor-none">
           {colors.map((c) => (
             <SwatchTile
               key={c.hex}
@@ -151,6 +123,38 @@ export function ColorSection() {
               onCopy={() => handleCopy(c.hex)}
             />
           ))}
+        </div>
+      </Reveal>
+
+      {/* Color ratio */}
+      <Reveal delay={0.06}>
+        <div className="mt-14 grid grid-cols-12 gap-6">
+          <div className="col-span-12 md:col-span-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
+              Color Ratio
+            </span>
+            <p className="mt-3 text-sm leading-relaxed text-ex-black/65">
+              Roughly equal off-black and off-white grounds, a measured amount of red, and only a touch of gold — held across any surface.
+            </p>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <div className="flex h-10 w-full overflow-hidden">
+              {colors.map((c) => (
+                <div
+                  key={c.hex}
+                  className="flex items-center justify-center"
+                  style={{ width: `${c.fr}%`, backgroundColor: c.hex }}
+                >
+                  <span
+                    className="text-xs font-bold tabular-nums tracking-wider"
+                    style={{ color: c.fg }}
+                  >
+                    {c.fr}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Reveal>
 

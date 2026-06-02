@@ -1,60 +1,33 @@
+## Logo section (Identity.tsx)
 
-## EXPOSURE by 29029 — Brand Toolkit (single page)
+- Make the Primary Lockup container match the size/padding of the Wordmark and Lockup+Triangle cells so all three frames feel like one clean grid. Keep the Primary Lockup full-width above, but reduce its padding (`p-14 md:p-20`) and logo size (`w-[220px] md:w-[280px]`) to match the two cells underneath.
+- Wire all three mark cells to a single shared dark/light toggle (small pill in the top-right of the marks block, labeled "Dark" / "Light"). When toggled:
+  - "Dark" mode (default): cells stay on the section's ex-black ground, using the `*_Light.svg` (light-on-dark) variants currently shown.
+  - "Light" mode: each cell's inner background flips to ex-off-white with a faint border, and the marks swap to the `*_Dark.svg` variants (EXPOSURE_Dark, EXPOSURE_Lockup_Dark, EXPOSURE_Lockup-Tri_Dark).
+  - Border, hover treatment, and Download stub behavior preserved in both states.
+- Graphic device diagram, clearspace/color/proportion rules, blurb: unchanged.
 
-A working reference page for the internal team and partners. Field-guide register: scannable, utilitarian, premium by restraint. One expressive moment (the thermal hero), everything else flat and clean.
+## Color section (Color.tsx)
 
-### Page structure (single route `/`, anchored top nav)
+- Remove the small "40 / 40 / 15 / 5" eyebrow tag above the bar.
+- Remove the "Red is exact — do not approximate" note.
+- Move the ratio bar so it sits **below** the 4 swatch tiles (currently above).
+- Above the ratio bar, add a small secondary title block: eyebrow "Color Ratio" + a 1–2 line blurb explaining the 40/40/15/5 hold (e.g. "Roughly equal off-black and off-white grounds, a measured amount of red, and only a touch of gold — held across any surface.").
+- Keep swatch tiles, copy-on-click behavior, and the bottom caption paragraph as-is.
 
-1. **Top nav (sticky)** — wordmark left, in-page jump links right: Intent · Voice · Identity · Type · Color · Assets. Tracked uppercase, off-white on off-black.
-2. **Hero** — full-viewport off-black canvas with the grainy thermal gradient motif (off-black → red → orange → gold + film grain). Display headline in Canela Light ALL CAPS with italic emphasis: "YOUR TEAM WON'T BE THE *SAME*." Small eyebrow "EXPOSURE / BRAND TOOLKIT / V1". One quiet red CTA → "Download assets" jumps to §Assets.
-3. **§Intent** — off-white section. Two-column field-guide layout: left label "01 / INTENT", right body: what EXPOSURE is, who it's for, why it exists. Pull-quote in Canela Light italic.
-4. **§Voice & Principles** — off-black section. Numbered list (01–05) of voice rules with do/don't pairs. Red delta (▲) mark as the bullet.
-5. **§Identity** — off-white. Wordmark lockup, clear-space diagram, minimum size, misuse grid (✕ in red). Static SVG specimens.
-6. **§Typography** — off-black. Canela Light specimen (display), PP Neue Montreal specimen (text), eyebrow specimen. Live samples using the bundled webfonts.
-7. **§Color** — off-white. Four swatches with HEX / RGB / role. Small 40/40/15/5 ratio bar. One restrained gold mention.
-8. **§Assets / Downloads** — off-black. Table-style list (Name · Format · Size · Download). Logo SVG/PNG, color tokens JSON, type specimen PDF placeholder, full brand kit ZIP. Red download links.
-9. **Footer** — version, last updated, contact line. Single gold rule.
+## Typography section (Typography.tsx)
 
-### Visual system
+- Character-set specimen: change each typeface block to list all uppercase letters first on one line, then all lowercase on the next line, then numerals/punctuation. Currently they're interleaved (`A a B b C c …`).
+  - Canela Light: `A B C D … Z` / `a b c d … z` / `0 1 2 … 9 & . , ; : ! ? — / ( )`
+  - PP Neue Montreal Regular: same structure.
+- Hierarchy scale H2 row:
+  - Change spec label to "Canela Light · 40–48px / 1.05".
+  - Remove the `uppercase` class so the specimen renders sentence case ("Where teams find their edge").
+  - Adjust the size clamp to land in the 40–48px range (e.g. `clamp(2.5rem, 3.5vw, 3rem)`).
+- Remove the Pull Quote row entirely from the hierarchy scale list.
+- In-use block, character set Canela block, all other rows: unchanged.
 
-- Co-equal off-black `#22211F` and off-white `#E7E6E1` grounds, alternating section to section.
-- Red `#E1251B` reserved for CTAs, the ▲ delta mark, misuse ✕, and downloads.
-- Gold `#CC9933` used once in the footer rule and once as a hairline accent under the hero eyebrow.
-- Hairline 1px dividers, generous whitespace, left-aligned, 12-col implicit grid via Tailwind.
-- Thermal hero: layered radial/linear gradients + an SVG turbulence/noise filter for grain. Pure CSS+SVG, no images.
+## Technical notes
 
-### Type
-
-- Self-host the 4 bundled woff2 files (Canela Light, Canela Light Italic, PP Neue Montreal Medium, PP Neue Montreal Bold) under `src/assets/fonts/` via `@font-face` in `styles.css`.
-- Note: the upload contains PP Neue Montreal **Medium** and **Bold** (no "Regular"). Medium will be used as the body weight; this is the closest match and reads cleanly at body sizes. Flagging here so you can swap in Regular later if you have it.
-- Display: Canela Light, predominantly ALL CAPS, italic on emphasis words.
-- Body: PP Neue Montreal Medium. Eyebrows/labels: PP Neue Montreal Bold, tracked uppercase, small.
-
-### Motion (Framer Motion, restrained)
-
-- Section headings + first paragraph: 200ms fade + 8px rise, triggered once on enter via `whileInView`.
-- Links/buttons: 150ms color/opacity hover only.
-- No parallax, no smooth-scroll library — native CSS `scroll-behavior: smooth` for nav anchors.
-
-### Assets to ship in the downloads section
-
-Placeholder static files generated in-repo (so the page is functional immediately):
-- `exposure-wordmark.svg`
-- `exposure-color-tokens.json`
-- `exposure-brand-kit.zip` (built locally containing the above)
-
-Real assets can be swapped in later by replacing the files in `public/downloads/`.
-
-### Technical details
-
-- TanStack Start, single route `src/routes/index.tsx` (replace placeholder). Page composed of small section components under `src/components/toolkit/` (Nav, Hero, Intent, Voice, Identity, Typography, Color, Assets, Footer).
-- Design tokens added to `src/styles.css` under `:root` in `oklch` equivalents of the four brand hex values, plus `--font-display` and `--font-sans` CSS vars. Tailwind utilities used via the existing `@theme inline` mapping; add `--color-ex-black`, `--color-ex-white`, `--color-ex-red`, `--color-ex-gold`.
-- Fonts loaded via `@font-face` with `font-display: swap`. The four woff2 files are imported from `src/assets/fonts/` so Vite fingerprints them.
-- Update root `head()` meta: title "EXPOSURE — Brand Toolkit", description, og tags. Single H1 in the hero.
-- No backend, no Cloud needed.
-
-### Out of scope
-
-- Auth / gated downloads (can be added later with Lovable Cloud if partners need access control).
-- CMS for editing copy — content lives in the route file.
-- Multiple pages — strictly single-page anchored.
+- Toggle: local `useState<'dark' | 'light'>` in `Identity`, no new deps. Cell background uses conditional class (`bg-transparent` vs `bg-ex-white`) and border tone adapts (`border-ex-white/15` vs `border-ex-black/10`). Mark image source switches via the imported Dark variants.
+- The Graphic Device diagram cell is intentionally left outside the toggle (it's a layout illustration, not a mark sample).

@@ -80,7 +80,10 @@ export function Typography() {
                 Canela Light
               </span>
               <p className="font-display text-[clamp(1.125rem,2.5vw,1.5rem)] font-light leading-[1.65] tracking-[0.04em] text-ex-black">
-                A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
+                A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+              </p>
+              <p className="mt-4 font-display text-[clamp(1.125rem,2.5vw,1.5rem)] font-light leading-[1.65] tracking-[0.04em] text-ex-black">
+                a b c d e f g h i j k l m n o p q r s t u v w x y z
               </p>
               <p className="mt-4 font-display text-[clamp(1.125rem,2.5vw,1.5rem)] font-light leading-[1.65] tracking-[0.04em] text-ex-black">
                 0 1 2 3 4 5 6 7 8 9 &amp; . , ; : ! ? — / ( )
@@ -93,7 +96,10 @@ export function Typography() {
                 PP Neue Montreal Regular
               </span>
               <p className="text-[clamp(1.125rem,2.5vw,1.5rem)] font-normal leading-[1.65] tracking-[0.04em] text-ex-black">
-                A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
+                A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+              </p>
+              <p className="mt-4 text-[clamp(1.125rem,2.5vw,1.5rem)] font-normal leading-[1.65] tracking-[0.04em] text-ex-black">
+                a b c d e f g h i j k l m n o p q r s t u v w x y z
               </p>
               <p className="mt-4 text-[clamp(1.125rem,2.5vw,1.5rem)] font-normal leading-[1.65] tracking-[0.04em] text-ex-black">
                 0 1 2 3 4 5 6 7 8 9 &amp; . , ; : ! ? — / ( )
@@ -131,29 +137,12 @@ export function Typography() {
                   H2 / Section Head
                 </span>
                 <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
-                  Canela Light · 48px / 1.05
+                  Canela Light · 40–48px / 1.05
                 </span>
               </div>
               <div className="md:col-span-9">
-                <p className="font-display text-[clamp(1.75rem,4vw,3rem)] font-light uppercase leading-[1.05] tracking-[-0.02em] text-ex-black">
+                <p className="font-display text-[clamp(2.5rem,3.5vw,3rem)] font-light leading-[1.05] tracking-[-0.02em] text-ex-black">
                   Where teams find their <em className="italic">edge</em>
-                </p>
-              </div>
-            </div>
-
-            {/* Pull Quote */}
-            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
-              <div className="md:col-span-3">
-                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
-                  Pull Quote
-                </span>
-                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
-                  Canela Light · 32px / 1.2
-                </span>
-              </div>
-              <div className="md:col-span-9">
-                <p className="font-display text-[clamp(1.25rem,2.5vw,2rem)] font-light leading-[1.2] tracking-[-0.01em] text-ex-black">
-                  We didn't know what we were capable of until hour fourteen.
                 </p>
               </div>
             </div>

@@ -1,13 +1,18 @@
+import { useState } from "react";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
+import exposureDark from "@/assets/logos/EXPOSURE_Dark.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
+import lockupDark from "@/assets/logos/EXPOSURE_Lockup_Dark.svg.asset.json";
 import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
+import lockupTriDark from "@/assets/logos/EXPOSURE_Lockup-Tri_Dark.svg.asset.json";
 import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
-function DownloadStub() {
+function DownloadStub({ light = false }: { light?: boolean }) {
+  const hover = light ? "group-hover:text-ex-black/50" : "group-hover:text-ex-white/50";
   return (
-    <span className="absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/0 transition-colors duration-300 group-hover:text-ex-white/50">
+    <span className={`absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-transparent transition-colors duration-300 ${hover}`}>
       Download
     </span>
   );
@@ -30,6 +35,13 @@ function UsageNote({ children }: { children: React.ReactNode }) {
 }
 
 export function Identity() {
+  const [mode, setMode] = useState<"dark" | "light">("dark");
+  const isLight = mode === "light";
+  const cellBg = isLight ? "bg-ex-white" : "bg-transparent";
+  const cellBorder = isLight ? "border-ex-black/10 hover:border-ex-black/25" : "border-ex-white/15 hover:border-ex-white/30";
+  const lockupSrc = isLight ? lockupDark.url : lockupLight.url;
+  const wordmarkSrc = isLight ? exposureDark.url : exposureLight.url;
+  const lockupTriSrc = isLight ? lockupTriDark.url : lockupTriLight.url;
   return (
     <Section
       id="logo"
@@ -39,17 +51,47 @@ export function Identity() {
       title={<>The <em className="italic">mark</em>.</>}
       blurb="Two approved marks: the primary lockup and the wordmark. The triangle is a graphic device — used for texture, pattern, and system identity — not a standalone logo. Keep one triangle-height of clearspace on every side of any mark."
     >
-      {/* 1. Primary lockup — large */}
+      {/* Dark / Light toggle */}
       <Reveal>
-        <div>
+        <div className="flex justify-end">
+          <div
+            role="group"
+            aria-label="Mark background"
+            className="inline-flex items-center gap-1 rounded-full border border-ex-white/15 p-1"
+          >
+            {(["dark", "light"] as const).map((m) => {
+              const active = mode === m;
+              return (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setMode(m)}
+                  aria-pressed={active}
+                  className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.22em] transition-colors duration-200 ${
+                    active
+                      ? "bg-ex-white text-ex-black"
+                      : "text-ex-white/55 hover:text-ex-white"
+                  }`}
+                >
+                  {m}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </Reveal>
+
+      {/* 1. Primary lockup */}
+      <Reveal>
+        <div className="mt-4">
           <Label>Primary Lockup</Label>
-          <div className="group relative mt-3 flex items-center justify-center border border-ex-white/15 p-16 md:p-24">
+          <div className={`group relative mt-3 flex items-center justify-center border p-14 md:p-20 transition-colors duration-300 ${cellBg} ${cellBorder}`}>
             <img
-              src={lockupLight.url}
+              src={lockupSrc}
               alt="EXPOSURE by 29029 — primary lockup"
-              className="w-[280px] md:w-[380px] h-auto"
+              className="w-[220px] md:w-[280px] h-auto"
             />
-            <DownloadStub />
+            <DownloadStub light={isLight} />
           </div>
           <UsageNote>The primary mark. Use it at the top of any layout.</UsageNote>
         </div>
@@ -60,13 +102,13 @@ export function Identity() {
         <Reveal delay={0.05}>
           <div>
             <Label>Wordmark</Label>
-            <div className="group relative mt-3 flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+            <div className={`group relative mt-3 flex items-center justify-center border p-14 md:p-20 transition-colors duration-300 ${cellBg} ${cellBorder}`}>
               <img
-                src={exposureLight.url}
+                src={wordmarkSrc}
                 alt="EXPOSURE wordmark"
                 className="w-[220px] md:w-[280px] h-auto"
               />
-              <DownloadStub />
+              <DownloadStub light={isLight} />
             </div>
             <UsageNote>Secondary, for tight or supporting placements where the 29029 endorsement isn't needed.</UsageNote>
           </div>
@@ -75,13 +117,13 @@ export function Identity() {
         <Reveal delay={0.1}>
           <div>
             <Label>Lockup + Triangle</Label>
-            <div className="group relative mt-3 flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+            <div className={`group relative mt-3 flex items-center justify-center border p-14 md:p-20 transition-colors duration-300 ${cellBg} ${cellBorder}`}>
               <img
-                src={lockupTriLight.url}
+                src={lockupTriSrc}
                 alt="EXPOSURE lockup + triangle mark"
                 className="w-[220px] md:w-[280px] h-auto"
               />
-              <DownloadStub />
+              <DownloadStub light={isLight} />
             </div>
             <UsageNote>Use only when EXPOSURE needs to read as part of 29029 — external decks, sponsorships, co-branded placements. Not for EXPOSURE's own marketing.</UsageNote>
           </div>
