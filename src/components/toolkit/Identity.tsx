@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
@@ -8,15 +8,6 @@ import lockupDark from "@/assets/logos/EXPOSURE_Lockup_Dark.svg.asset.json";
 import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
 import lockupTriDark from "@/assets/logos/EXPOSURE_Lockup-Tri_Dark.svg.asset.json";
 import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
-
-function DownloadStub({ light = false }: { light?: boolean }) {
-  const hover = light ? "group-hover:text-ex-black/50" : "group-hover:text-ex-white/50";
-  return (
-    <span className={`absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-transparent transition-colors duration-300 ${hover}`}>
-      Download
-    </span>
-  );
-}
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
