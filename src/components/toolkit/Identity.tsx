@@ -34,6 +34,35 @@ export function Identity() {
   const lockupSrc = isLight ? lockupDark.url : lockupLight.url;
   const wordmarkSrc = isLight ? exposureDark.url : exposureLight.url;
   const lockupTriSrc = isLight ? lockupTriDark.url : lockupTriLight.url;
+
+  const logoRef = useRef<HTMLDivElement>(null);
+  const tagRef = useRef<HTMLDivElement>(null);
+  const [tagVisible, setTagVisible] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(hover: none)").matches) return;
+    const wrapper = logoRef.current;
+    if (!wrapper) return;
+
+    const onMove = (e: MouseEvent) => {
+      const el = tagRef.current;
+      if (!el) return;
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, calc(-100% - 14px))`;
+    };
+    const onEnter = () => setTagVisible(true);
+    const onLeave = () => setTagVisible(false);
+
+    wrapper.addEventListener("mousemove", onMove);
+    wrapper.addEventListener("mouseenter", onEnter);
+    wrapper.addEventListener("mouseleave", onLeave);
+    return () => {
+      wrapper.removeEventListener("mousemove", onMove);
+      wrapper.removeEventListener("mouseenter", onEnter);
+      wrapper.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
   return (
     <Section
       id="logo"
@@ -73,53 +102,62 @@ export function Identity() {
         </div>
       </Reveal>
 
-      {/* 1. Primary lockup */}
-      <Reveal>
-        <div className="mt-4">
-          <Label>Primary Lockup</Label>
-          <div className={markCell}>
-            <img
-              src={lockupSrc}
-              alt="EXPOSURE by 29029 — primary lockup"
-              className="h-auto max-h-full w-[220px] md:w-[280px]"
-            />
-            <DownloadStub light={isLight} />
+      {/* Cursor-following tag */}
+      <div
+        ref={tagRef}
+        aria-hidden="true"
+        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
+        style={{ borderRadius: 9999 }}
+      >
+        Download logo
+      </div>
+
+      <div ref={logoRef} className="[&_*]:cursor-none md:cursor-none">
+        {/* 1. Primary lockup */}
+        <Reveal>
+          <div className="mt-4">
+            <Label>Primary Lockup</Label>
+            <div className={markCell}>
+              <img
+                src={lockupSrc}
+                alt="EXPOSURE by 29029 — primary lockup"
+                className="h-auto max-h-full w-[220px] md:w-[280px]"
+              />
+            </div>
+            <UsageNote>The primary mark. Use it at the top of any layout.</UsageNote>
           </div>
-          <UsageNote>The primary mark. Use it at the top of any layout.</UsageNote>
+        </Reveal>
+
+        {/* 2. Wordmark + 3. Lockup + Triangle */}
+        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <Reveal delay={0.05}>
+            <div>
+              <Label>Wordmark</Label>
+              <div className={markCell}>
+                <img
+                  src={wordmarkSrc}
+                  alt="EXPOSURE wordmark"
+                  className="h-auto max-h-full w-[220px] md:w-[280px]"
+                />
+              </div>
+              <UsageNote>Secondary, for tight or supporting placements where the 29029 endorsement isn't needed.</UsageNote>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div>
+              <Label>Lockup + Triangle</Label>
+              <div className={markCell}>
+                <img
+                  src={lockupTriSrc}
+                  alt="EXPOSURE lockup + triangle mark"
+                  className="h-auto max-h-full w-[220px] md:w-[280px]"
+                />
+              </div>
+              <UsageNote>Use only when EXPOSURE needs to read as part of 29029 — external decks, sponsorships, co-branded placements. Not for EXPOSURE's own marketing.</UsageNote>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
-
-      {/* 2. Wordmark + 3. Lockup + Triangle */}
-      <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
-        <Reveal delay={0.05}>
-          <div>
-            <Label>Wordmark</Label>
-            <div className={markCell}>
-              <img
-                src={wordmarkSrc}
-                alt="EXPOSURE wordmark"
-                className="h-auto max-h-full w-[220px] md:w-[280px]"
-              />
-              <DownloadStub light={isLight} />
-            </div>
-            <UsageNote>Secondary, for tight or supporting placements where the 29029 endorsement isn't needed.</UsageNote>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div>
-            <Label>Lockup + Triangle</Label>
-            <div className={markCell}>
-              <img
-                src={lockupTriSrc}
-                alt="EXPOSURE lockup + triangle mark"
-                className="h-auto max-h-full w-[220px] md:w-[280px]"
-              />
-              <DownloadStub light={isLight} />
-            </div>
-            <UsageNote>Use only when EXPOSURE needs to read as part of 29029 — external decks, sponsorships, co-branded placements. Not for EXPOSURE's own marketing.</UsageNote>
-          </div>
-        </Reveal>
       </div>
 
       {/* Graphic device */}
@@ -162,8 +200,6 @@ export function Identity() {
                 className="h-5 w-auto"
                 style={{ filter: "invert(18%) sepia(95%) saturate(6494%) hue-rotate(353deg) brightness(97%) contrast(92%)" }}
               />
-
-              <DownloadStub />
             </div>
           </div>
         </div>
