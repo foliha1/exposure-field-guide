@@ -125,7 +125,8 @@ export function Identity() {
               <img
                 src={triangle.url}
                 alt="29029 triangle — bottom cap"
-                className="h-5 w-auto text-ex-red"
+                className="h-5 w-auto"
+                style={{ filter: "invert(18%) sepia(95%) saturate(6494%) hue-rotate(353deg) brightness(97%) contrast(92%)" }}
               />
 
               <DownloadStub />
