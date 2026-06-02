@@ -39,6 +39,7 @@ export function Identity() {
   const isLight = mode === "light";
   const cellBg = isLight ? "bg-ex-white" : "bg-transparent";
   const cellBorder = isLight ? "border-ex-black/10 hover:border-ex-black/25" : "border-ex-white/15 hover:border-ex-white/30";
+  const markCell = `group relative mt-3 flex h-[285px] items-center justify-center border p-14 transition-colors duration-300 md:h-[285px] md:p-20 ${cellBg} ${cellBorder}`;
   const lockupSrc = isLight ? lockupDark.url : lockupLight.url;
   const wordmarkSrc = isLight ? exposureDark.url : exposureLight.url;
   const lockupTriSrc = isLight ? lockupTriDark.url : lockupTriLight.url;
@@ -85,11 +86,11 @@ export function Identity() {
       <Reveal>
         <div className="mt-4">
           <Label>Primary Lockup</Label>
-          <div className={`group relative mt-3 flex items-center justify-center border p-14 md:p-20 transition-colors duration-300 ${cellBg} ${cellBorder}`}>
+          <div className={markCell}>
             <img
               src={lockupSrc}
               alt="EXPOSURE by 29029 — primary lockup"
-              className="w-[220px] md:w-[280px] h-auto"
+              className="h-auto max-h-full w-[220px] md:w-[280px]"
             />
             <DownloadStub light={isLight} />
           </div>
@@ -102,11 +103,11 @@ export function Identity() {
         <Reveal delay={0.05}>
           <div>
             <Label>Wordmark</Label>
-            <div className={`group relative mt-3 flex items-center justify-center border p-14 md:p-20 transition-colors duration-300 ${cellBg} ${cellBorder}`}>
+            <div className={markCell}>
               <img
                 src={wordmarkSrc}
                 alt="EXPOSURE wordmark"
-                className="w-[220px] md:w-[280px] h-auto"
+                className="h-auto max-h-full w-[220px] md:w-[280px]"
               />
               <DownloadStub light={isLight} />
             </div>
@@ -117,11 +118,11 @@ export function Identity() {
         <Reveal delay={0.1}>
           <div>
             <Label>Lockup + Triangle</Label>
-            <div className={`group relative mt-3 flex items-center justify-center border p-14 md:p-20 transition-colors duration-300 ${cellBg} ${cellBorder}`}>
+            <div className={markCell}>
               <img
                 src={lockupTriSrc}
                 alt="EXPOSURE lockup + triangle mark"
-                className="w-[220px] md:w-[280px] h-auto"
+                className="h-auto max-h-full w-[220px] md:w-[280px]"
               />
               <DownloadStub light={isLight} />
             </div>
