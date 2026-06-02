@@ -14,14 +14,12 @@ function SwatchTile({
   hex,
   rgb,
   fg,
-  copied,
   onCopy,
 }: {
   name: string;
   hex: string;
   rgb: string;
   fg: string;
-  copied: boolean;
   onCopy: () => void;
 }) {
   return (
@@ -50,22 +48,13 @@ function SwatchTile({
           </div>
         </div>
       </div>
-
-      {/* Copied confirmation */}
-      <span
-        className={`absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-5 md:right-5 ${copied ? "opacity-100" : "opacity-0"}`}
-      >
-        Copied
-      </span>
     </button>
   );
 }
 
 export function ColorSection() {
-  const [copiedHex, setCopiedHex] = useState<string | null>(null);
   const tagRef = useRef<HTMLDivElement>(null);
   const [tagVisible, setTagVisible] = useState(false);
-  const [tagCopied, setTagCopied] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -95,10 +84,6 @@ export function ColorSection() {
   const handleCopy = useCallback(
     (hex: string) => {
       navigator.clipboard.writeText(hex).catch(() => {});
-      setCopiedHex(hex);
-      setTagCopied(true);
-      window.setTimeout(() => setCopiedHex((current) => (current === hex ? null : current)), 1200);
-      window.setTimeout(() => setTagCopied(false), 1200);
     },
     []
   );
@@ -119,7 +104,6 @@ export function ColorSection() {
             <SwatchTile
               key={c.hex}
               {...c}
-              copied={copiedHex === c.hex}
               onCopy={() => handleCopy(c.hex)}
             />
           ))}
@@ -165,7 +149,7 @@ export function ColorSection() {
         className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
         style={{ borderRadius: 9999 }}
       >
-        {tagCopied ? "Copied" : "Copy Hex"}
+        Copy Hex
       </div>
 
       {/* Caption */}
