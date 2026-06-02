@@ -44,6 +44,7 @@ export function Assets() {
       label="Assets"
       variant="dark"
       title={<>Take what you <em className="italic">need</em>.</>}
+      blurb="Everything you need to use the brand correctly: the logo pack, the four-color file as design tokens, the licensed typefaces, and the full brand guide as a PDF. Open access, no email gate."
     >
       <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-2">
         {assets.map((a, i) => (

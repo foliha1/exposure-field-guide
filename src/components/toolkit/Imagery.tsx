@@ -32,8 +32,9 @@ export function Imagery() {
       label="Imagery"
       variant="light"
       title={<>Real people, <em className="italic">real effort</em>.</>}
+      blurb="Warm, natural, candid. Photograph people in the work — hands, huddles, faces mid-effort — in daylight, dusk, or firelight. No heavy grading, no posed setups, no landscapes as the headline."
     >
-      <div className="grid max-w-3xl grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 gap-4 md:gap-6">
         {frames.map((f, i) => (
           <Reveal key={f.src} delay={0.05 + i * 0.05}>
             <figure className="m-0">

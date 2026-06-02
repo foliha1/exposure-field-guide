@@ -110,6 +110,7 @@ export function ColorSection() {
       label="Color"
       variant="light"
       title={<>Four colors, <em className="italic">held in ratio</em>.</>}
+      blurb="A four-color system: off-black and off-white as co-equal grounds, red for emphasis, gold used sparingly. Hold the 40 / 40 / 15 / 5 ratio across any surface — roughly equal black and white, a measured amount of red, only a touch of gold."
     >
       {/* Ratio bar */}
       <Reveal>
