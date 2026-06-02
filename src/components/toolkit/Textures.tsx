@@ -1,5 +1,6 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { useRef } from "react";
 import video from "@/assets/textures/EXPOSURE_Texture_Horiz.mp4.asset.json";
 import t1 from "@/assets/textures/Textures.jpg.asset.json";
 import t2 from "@/assets/textures/Textures2.jpg.asset.json";
@@ -35,6 +36,13 @@ const rules = [
 ];
 
 export function Textures() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const delta = el.clientWidth * 0.6 * dir;
+    el.scrollBy({ left: delta, behavior: "smooth" });
+  };
   return (
     <Section
       id="textures"
@@ -62,6 +70,7 @@ export function Textures() {
       <Reveal delay={0.06}>
         <div className="relative mt-6">
           <div
+            ref={scrollerRef}
             className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             style={{ scrollPaddingLeft: "0px" }}
           >
@@ -82,14 +91,28 @@ export function Textures() {
           {/* Edge fades */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-ex-off-black to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-ex-off-black to-transparent" />
-          {/* Carousel indicator */}
-          <div className="mt-4 flex items-center justify-center gap-2">
-            {stills.map((_, i) => (
-              <div
-                key={i}
-                className="h-1.5 w-1.5 rounded-full bg-ex-white/30 transition-colors duration-150"
-              />
-            ))}
+          {/* Prev / Next */}
+          <div className="mt-4 flex items-center justify-end gap-2">
+            <button
+              type="button"
+              aria-label="Previous textures"
+              onClick={() => scrollBy(-1)}
+              className="inline-flex h-9 w-9 items-center justify-center border border-ex-white/25 text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red focus-visible:outline-none focus-visible:border-ex-red"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M9 1L3 7l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next textures"
+              onClick={() => scrollBy(1)}
+              className="inline-flex h-9 w-9 items-center justify-center border border-ex-white/25 text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red focus-visible:outline-none focus-visible:border-ex-red"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M5 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              </svg>
+            </button>
           </div>
         </div>
       </Reveal>
