@@ -82,6 +82,15 @@ export function Textures() {
           {/* Edge fades */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-ex-off-black to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-ex-off-black to-transparent" />
+          {/* Carousel indicator */}
+          <div className="mt-4 flex items-center justify-center gap-2">
+            {stills.map((_, i) => (
+              <div
+                key={i}
+                className="h-1.5 w-1.5 rounded-full bg-ex-white/30 transition-colors duration-150"
+              />
+            ))}
+          </div>
         </div>
       </Reveal>
 
