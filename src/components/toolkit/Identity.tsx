@@ -58,7 +58,7 @@ export function Identity() {
       label="Logo"
       variant="dark"
       title="Logo"
-      blurb="Two approved marks: the primary lockup and the wordmark. The triangle is a graphic device — used for texture, pattern, and system identity — not a standalone logo. Keep one triangle-height of clearspace on every side of any mark."
+      blurb="Two marks: the primary lockup and the wordmark. The triangle is a graphic device, not a logo. Always leave one triangle-height of space around any mark."
     >
       {/* Dark / Light toggle */}
       <Reveal>

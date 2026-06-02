@@ -10,7 +10,7 @@ export function Typography() {
       label="Typography"
       variant="light"
       title="Typography"
-      blurb="Two typefaces. Canela Light carries display and editorial moments — titles, pull quotes, the rare statement. PP Neue Montreal handles everything else: body copy, UI, labels, and tracked uppercase eyebrows."
+      blurb="Two typefaces. Use Canela Light for titles and pull quotes. Use PP Neue Montreal for everything else — body text, labels, and buttons."
     >
       {/* Typeface specimen */}
       <Reveal>
