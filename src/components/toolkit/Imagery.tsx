@@ -28,7 +28,7 @@ export function Imagery() {
   return (
     <Section
       id="imagery"
-      number="05"
+      number="04"
       label="Imagery"
       variant="light"
       title="Imagery"

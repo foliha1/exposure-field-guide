@@ -91,7 +91,7 @@ export function ColorSection() {
   return (
     <Section
       id="color"
-      number="03"
+      number="02"
       label="Color"
       variant="light"
       title="Color"
