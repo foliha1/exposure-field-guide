@@ -9,7 +9,7 @@ export function Typography() {
       number="04"
       label="Typography"
       variant="light"
-      title={<>Two voices, <em className="italic">used quietly</em>.</>}
+      title="Typography"
       blurb="Two typefaces. Canela Light carries display and editorial moments — titles, pull quotes, the rare statement. PP Neue Montreal handles everything else: body copy, UI, labels, and tracked uppercase eyebrows."
     >
       {/* Typeface specimen */}

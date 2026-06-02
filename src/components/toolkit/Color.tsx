@@ -25,7 +25,7 @@ function SwatchTile({
   return (
     <button
       onClick={onCopy}
-      className="group relative aspect-square cursor-pointer border-0 p-4 text-left transition-[filter] duration-200 hover:brightness-105 focus:outline-none md:p-5"
+      className="group relative aspect-square cursor-pointer border-0 p-4 text-left focus:outline-none md:p-5"
       style={{
         backgroundColor: hex,
         color: fg,
@@ -94,7 +94,7 @@ export function ColorSection() {
       number="03"
       label="Color"
       variant="light"
-      title={<>Four colors, <em className="italic">held in ratio</em>.</>}
+      title="Color"
       blurb="A four-color system: off-black and off-white as co-equal grounds, red for emphasis, gold used sparingly. Hold the 40 / 40 / 15 / 5 ratio across any surface — roughly equal black and white, a measured amount of red, only a touch of gold."
     >
       {/* Swatch tiles — equal flat blocks, 2x2 on small, 4 across on md+ */}
@@ -146,7 +146,7 @@ export function ColorSection() {
       <div
         ref={tagRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
+        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-red px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
         style={{ borderRadius: 9999 }}
       >
         Copy Hex

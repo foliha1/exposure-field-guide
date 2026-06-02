@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/toolkit/Nav";
 import { Hero } from "@/components/toolkit/Hero";
-import { Intent } from "@/components/toolkit/Intent";
 import { Identity } from "@/components/toolkit/Identity";
 import { Typography } from "@/components/toolkit/Typography";
 import { ColorSection } from "@/components/toolkit/Color";
@@ -26,7 +25,6 @@ function Index() {
     <main className="min-h-screen bg-ex-white text-ex-black">
       <Nav />
       <Hero />
-      <Intent />
       <Identity />
       <ColorSection />
       <Typography />
