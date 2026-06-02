@@ -30,38 +30,26 @@ export function Identity() {
   const isLight = mode === "light";
   const cellBg = isLight ? "bg-ex-white" : "bg-transparent";
   const cellBorder = isLight ? "border-ex-black/10 hover:border-ex-black/25" : "border-ex-white/15 hover:border-ex-white/30";
-  const markCell = `group relative mt-3 flex h-[285px] items-center justify-center border p-14 transition-colors duration-300 md:h-[285px] md:p-20 ${cellBg} ${cellBorder}`;
+  const markCell = `group relative mt-3 flex h-[285px] items-center justify-center border p-14 transition-colors duration-300 md:h-[285px] md:p-20 md:cursor-none ${cellBg} ${cellBorder} [&_*]:cursor-none`;
   const lockupSrc = isLight ? lockupDark.url : lockupLight.url;
   const wordmarkSrc = isLight ? exposureDark.url : exposureLight.url;
   const lockupTriSrc = isLight ? lockupTriDark.url : lockupTriLight.url;
 
-  const logoRef = useRef<HTMLDivElement>(null);
   const tagRef = useRef<HTMLDivElement>(null);
   const [tagVisible, setTagVisible] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(hover: none)").matches) return;
-    const wrapper = logoRef.current;
-    if (!wrapper) return;
-
-    const onMove = (e: MouseEvent) => {
+  const cellHandlers = {
+    onMouseEnter: () => {
+      if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+      setTagVisible(true);
+    },
+    onMouseLeave: () => setTagVisible(false),
+    onMouseMove: (e: React.MouseEvent) => {
       const el = tagRef.current;
       if (!el) return;
       el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, calc(-100% - 14px))`;
-    };
-    const onEnter = () => setTagVisible(true);
-    const onLeave = () => setTagVisible(false);
-
-    wrapper.addEventListener("mousemove", onMove);
-    wrapper.addEventListener("mouseenter", onEnter);
-    wrapper.addEventListener("mouseleave", onLeave);
-    return () => {
-      wrapper.removeEventListener("mousemove", onMove);
-      wrapper.removeEventListener("mouseenter", onEnter);
-      wrapper.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
+    },
+  };
 
   return (
     <Section
