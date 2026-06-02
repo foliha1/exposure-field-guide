@@ -41,7 +41,66 @@ export function Typography() {
       title={<>Two voices, <em className="italic">used quietly</em>.</>}
       blurb="Two typefaces. Canela Light carries display and editorial moments — titles, pull quotes, the rare statement. PP Neue Montreal handles everything else: body copy, UI, labels, and tracked uppercase eyebrows."
     >
-      <div className="space-y-2">
+      {/* Typeface specimen */}
+      <Reveal>
+        <div className="bg-ex-black text-ex-white">
+          <div className="px-6 py-16 md:px-12 md:py-24 lg:py-32">
+            <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-12">
+              {/* Canela */}
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-white/40">
+                  Canela
+                </span>
+                <div className="mt-10 space-y-10">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-white/40 block mb-4">
+                      Canela Light
+                    </span>
+                    <p className="font-display text-[clamp(2.5rem,5vw,4rem)] font-light leading-[1.05] tracking-[-0.02em]">
+                      Exposure
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-white/40 block mb-4">
+                      Canela Light Italic
+                    </span>
+                    <p className="font-display text-[clamp(2.5rem,5vw,4rem)] font-light italic leading-[1.05] tracking-[-0.02em]">
+                      Exposure
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* PP Neue Montreal */}
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-white/40">
+                  PP Neue Montreal
+                </span>
+                <div className="mt-10 space-y-10">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-white/40 block mb-4">
+                      PP Neue Montreal Regular
+                    </span>
+                    <p className="text-[clamp(2.5rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.02em]">
+                      Exposure
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-white/40 block mb-4">
+                      PP Neue Montreal Bold
+                    </span>
+                    <p className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.02em]">
+                      Exposure
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="space-y-2 mt-10">
         {/* H1 / Hero */}
         <Specimen
           label="H1 / Hero"
