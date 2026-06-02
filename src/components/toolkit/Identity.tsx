@@ -3,6 +3,7 @@ import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
 import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
+import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 function DownloadStub() {
   return (
