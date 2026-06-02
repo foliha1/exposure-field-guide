@@ -29,7 +29,7 @@ export function Imagery() {
       id="imagery"
       number="04"
       label="Imagery"
-      variant="light"
+      variant="dark"
       title="Imagery"
       blurb="Warm, natural, and candid. Show people in the work — hands, huddles, real effort — in natural light."
     >
@@ -37,7 +37,7 @@ export function Imagery() {
         {frames.map((f, i) => (
           <Reveal key={f.src} delay={0.05 + i * 0.05}>
             <div className="m-0">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-ex-black/5">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-ex-white/5">
                 <img
                   src={f.src}
                   alt=""
@@ -57,7 +57,7 @@ export function Imagery() {
               <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
                 {r.eyebrow}
               </div>
-              <p className="text-[15px] leading-[1.55] text-ex-black/80">{r.body}</p>
+              <p className="text-[15px] leading-[1.55] text-ex-white/80">{r.body}</p>
             </div>
           </Reveal>
         ))}

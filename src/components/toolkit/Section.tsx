@@ -25,7 +25,7 @@ export function Section({
       id={id}
       className={
         dark
-          ? "border-t border-ex-white/10 bg-ex-black text-ex-white"
+          ? "border-t border-ex-white/10 bg-ex-off-black text-ex-white"
           : "border-t border-ex-black/10 bg-ex-white text-ex-black"
       }
     >
@@ -35,9 +35,6 @@ export function Section({
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
               {number}
-            </span>
-            <span className={`text-[10px] font-bold uppercase tracking-[0.28em] ${muted}`}>
-              {label}
             </span>
           </div>
         </Reveal>
