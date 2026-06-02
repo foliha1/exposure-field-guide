@@ -63,7 +63,7 @@ export function Assets() {
   return (
     <Section
       id="assets"
-      number="07"
+      number="06"
       label="Assets"
       variant="dark"
       title="Assets"

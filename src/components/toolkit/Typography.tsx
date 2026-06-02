@@ -6,7 +6,7 @@ export function Typography() {
   return (
     <Section
       id="type"
-      number="04"
+      number="03"
       label="Typography"
       variant="light"
       title="Typography"

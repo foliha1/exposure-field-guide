@@ -38,7 +38,7 @@ export function Textures() {
   return (
     <Section
       id="textures"
-      number="06"
+      number="05"
       label="Textures"
       variant="dark"
       title="Textures"
