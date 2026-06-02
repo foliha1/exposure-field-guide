@@ -216,6 +216,29 @@ export function Typography() {
           </p>
         </Specimen>
       </div>
+
+      {/* In use */}
+      <Reveal delay={0.04}>
+        <div className="mt-10 border-t border-ex-black/10 pt-10 md:pt-14">
+          <div className="mb-6 flex flex-col gap-1 md:mb-8">
+            <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
+              In use
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+              Canela Light + PP Neue Montreal
+            </span>
+          </div>
+          <p className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.05] tracking-[-0.02em] text-ex-black">
+            Your team <em className="italic">won't</em> be the same
+          </p>
+          <p className="mt-6 max-w-2xl text-[17px] leading-[1.6] tracking-[-0.01em] text-ex-black/80">
+            We put teams under sustained physical and decision-making load — not to break them, but to reveal what they are capable of together.
+          </p>
+          <p className="mt-4 text-[13px] leading-[1.5] text-ex-black/50">
+            EXPOSURE BY 29029 — DEVELOP LEADERS THROUGH ENDURANCE
+          </p>
+        </div>
+      </Reveal>
     </Section>
   );
 }
