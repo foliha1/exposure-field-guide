@@ -4,8 +4,8 @@ import p1 from "@/assets/photos/photo-style-1.jpg.asset.json";
 import p2 from "@/assets/photos/photo-style-2.jpg.asset.json";
 
 const frames = [
-  { src: p1.url, caption: "Hands · field" },
-  { src: p2.url, caption: "Faces · effort" },
+  { src: p1.url },
+  { src: p2.url },
 ];
 
 const rules = [
