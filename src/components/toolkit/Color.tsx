@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 
@@ -63,12 +63,42 @@ function SwatchTile({
 
 export function ColorSection() {
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
+  const tagRef = useRef<HTMLDivElement>(null);
+  const [tagVisible, setTagVisible] = useState(false);
+  const [tagCopied, setTagCopied] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(hover: none)").matches) return;
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const onMove = (e: MouseEvent) => {
+      const el = tagRef.current;
+      if (!el) return;
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, calc(-100% - 14px))`;
+    };
+    const onEnter = () => setTagVisible(true);
+    const onLeave = () => setTagVisible(false);
+
+    grid.addEventListener("mousemove", onMove);
+    grid.addEventListener("mouseenter", onEnter);
+    grid.addEventListener("mouseleave", onLeave);
+    return () => {
+      grid.removeEventListener("mousemove", onMove);
+      grid.removeEventListener("mouseenter", onEnter);
+      grid.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
 
   const handleCopy = useCallback(
     (hex: string) => {
       navigator.clipboard.writeText(hex).catch(() => {});
       setCopiedHex(hex);
+      setTagCopied(true);
       window.setTimeout(() => setCopiedHex((current) => (current === hex ? null : current)), 1200);
+      window.setTimeout(() => setTagCopied(false), 1200);
     },
     []
   );
@@ -111,7 +141,7 @@ export function ColorSection() {
 
       {/* Swatch tiles — equal flat blocks, 2x2 on small, 4 across on md+ */}
       <Reveal delay={0.06}>
-        <div className="mt-6 grid w-full grid-cols-2 md:grid-cols-4">
+        <div ref={gridRef} className="mt-6 grid w-full grid-cols-2 md:grid-cols-4 [&_*]:cursor-none md:cursor-none">
           {colors.map((c) => (
             <SwatchTile
               key={c.hex}
@@ -122,6 +152,16 @@ export function ColorSection() {
           ))}
         </div>
       </Reveal>
+
+      {/* Cursor-following tag (hidden on touch) */}
+      <div
+        ref={tagRef}
+        aria-hidden="true"
+        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
+        style={{ borderRadius: 9999 }}
+      >
+        {tagCopied ? "Copied" : "Copy Hex"}
+      </div>
 
       {/* Caption */}
       <Reveal delay={0.12}>
