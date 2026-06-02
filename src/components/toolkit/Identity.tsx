@@ -3,6 +3,7 @@ import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
 import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
+import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 function DownloadStub() {
   return (
@@ -86,6 +87,53 @@ export function Identity() {
           </div>
         </Reveal>
       </div>
+
+      {/* Graphic device */}
+      <Reveal delay={0.15}>
+        <div className="mt-14">
+          <Label>Graphic Device</Label>
+          <div className="mt-3 grid grid-cols-1 gap-8 md:grid-cols-2">
+            {/* Note */}
+            <div className="flex flex-col justify-center">
+              <p className="text-sm leading-relaxed text-ex-white/65">
+                The 29029 triangle is a graphic device, not a standalone logo.
+                In EXPOSURE's own materials it caps a layout: the primary
+                lockup sits at the top, content sits between, and the
+                triangle closes it at the bottom. The lockup and triangle are
+                used together but kept separate — top and bottom — never
+                combined into one mark here.
+              </p>
+            </div>
+
+            {/* Diagram */}
+            <div className="group relative flex flex-col items-center border border-ex-white/15 bg-ex-black/40 px-8 py-10 md:px-12 md:py-14">
+              {/* Top: small lockup */}
+              <img
+                src={lockupLight.url}
+                alt="EXPOSURE by 29029 — top cap"
+                className="h-6 w-auto opacity-80"
+              />
+
+              {/* Middle: content placeholder */}
+              <div className="my-10 flex flex-col items-center gap-2 md:my-14">
+                <div className="h-px w-24 bg-ex-white/10" />
+                <div className="h-px w-16 bg-ex-white/10" />
+                <div className="h-px w-20 bg-ex-white/10" />
+              </div>
+
+              {/* Bottom: triangle */}
+              <img
+                src={triangle.url}
+                alt="29029 triangle — bottom cap"
+                className="h-5 w-auto"
+                style={{ filter: "invert(18%) sepia(95%) saturate(6494%) hue-rotate(353deg) brightness(97%) contrast(92%)" }}
+              />
+
+              <DownloadStub />
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
       {/* Clearspace & don'ts */}
       <Reveal delay={0.15}>
