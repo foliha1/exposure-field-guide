@@ -36,20 +36,16 @@ export function Imagery() {
       <div className="grid grid-cols-2 gap-4 md:gap-6">
         {frames.map((f, i) => (
           <Reveal key={f.src} delay={0.05 + i * 0.05}>
-            <figure className="m-0">
+            <div className="m-0">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-ex-black/5">
                 <img
                   src={f.src}
-                  alt={f.caption}
+                  alt=""
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
-              <figcaption className="mt-3 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.22em] text-ex-black/50">
-                <span>{String(i + 1).padStart(2, "0")} · {f.caption}</span>
-                <img src={triangleMark.url} alt="" aria-hidden className="h-2.5 w-auto" />
-              </figcaption>
-            </figure>
+            </div>
           </Reveal>
         ))}
       </div>
