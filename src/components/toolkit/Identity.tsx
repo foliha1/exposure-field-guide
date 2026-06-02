@@ -57,7 +57,7 @@ export function Identity() {
       number="02"
       label="Logo"
       variant="dark"
-      title={<>The <em className="italic">mark</em>.</>}
+      title="Logo"
       blurb="Two approved marks: the primary lockup and the wordmark. The triangle is a graphic device — used for texture, pattern, and system identity — not a standalone logo. Keep one triangle-height of clearspace on every side of any mark."
     >
       {/* Dark / Light toggle */}
@@ -94,18 +94,18 @@ export function Identity() {
       <div
         ref={tagRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
+        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-red px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
         style={{ borderRadius: 9999 }}
       >
         Download logo
       </div>
 
-      <div ref={logoRef} className="[&_*]:cursor-none md:cursor-none">
+      <div>
         {/* 1. Primary lockup */}
         <Reveal>
           <div className="mt-4">
             <Label>Primary Lockup</Label>
-            <div className={markCell}>
+            <div className={markCell} {...cellHandlers}>
               <img
                 src={lockupSrc}
                 alt="EXPOSURE by 29029 — primary lockup"
@@ -121,7 +121,7 @@ export function Identity() {
           <Reveal delay={0.05}>
             <div>
               <Label>Wordmark</Label>
-              <div className={markCell}>
+              <div className={markCell} {...cellHandlers}>
                 <img
                   src={wordmarkSrc}
                   alt="EXPOSURE wordmark"
@@ -135,7 +135,7 @@ export function Identity() {
           <Reveal delay={0.1}>
             <div>
               <Label>Lockup + Triangle</Label>
-              <div className={markCell}>
+              <div className={markCell} {...cellHandlers}>
                 <img
                   src={lockupTriSrc}
                   alt="EXPOSURE lockup + triangle mark"
