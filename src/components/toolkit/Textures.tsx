@@ -58,21 +58,32 @@ export function Textures() {
         </div>
       </Reveal>
 
-      {/* Stills grid */}
-      <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-        {stills.map((s, i) => (
-          <Reveal key={s.src} delay={0.05 + i * 0.04}>
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-ex-white/5">
-              <img
-                src={s.src}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-          </Reveal>
-        ))}
-      </div>
+      {/* Stills carousel */}
+      <Reveal delay={0.06}>
+        <div className="relative mt-6">
+          <div
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollPaddingLeft: "0px" }}
+          >
+            {stills.map((s) => (
+              <div
+                key={s.src}
+                className="relative aspect-[4/3] w-[78%] flex-none snap-start overflow-hidden bg-ex-white/5 sm:w-[48%] md:w-[32%]"
+              >
+                <img
+                  src={s.src}
+                  alt=""
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          {/* Edge fades */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-ex-off-black to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-ex-off-black to-transparent" />
+        </div>
+      </Reveal>
 
       {/* Rules */}
       <div className="mt-16 grid max-w-3xl gap-8 md:grid-cols-3 md:gap-10">
