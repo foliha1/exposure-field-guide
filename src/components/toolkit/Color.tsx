@@ -155,7 +155,7 @@ export function ColorSection() {
       {/* Caption */}
       <Reveal delay={0.12}>
         <p className="mt-10 max-w-xl text-sm leading-relaxed text-ex-black/70">
-          Off-black and off-white are co-equal grounds — alternate between them to create rhythm across surfaces. Red is functional: CTAs, the delta mark, rules, and emphasis only. Gold is rare. One considered touch per surface, never decorative.
+          Use off-black and off-white as your main backgrounds, and switch between them to keep things fresh. Save red for buttons, the mark, and emphasis. Use gold rarely — one small touch per surface.
         </p>
       </Reveal>
     </Section>

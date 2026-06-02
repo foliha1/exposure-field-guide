@@ -22,15 +22,15 @@ const stills = [
 const rules = [
   {
     eyebrow: "Application",
-    body: "Backgrounds, key art, and section grounds. Behind type, the gradient sits dark enough to keep text legible.",
+    body: "Use for backgrounds and key art. Behind text, keep the gradient dark enough to read.",
   },
   {
     eyebrow: "Grain",
-    body: "The grain is required. A clean gradient is off-brand — texture is the point.",
+    body: "Always keep the grain. A clean gradient is off-brand.",
   },
   {
     eyebrow: "Restraint",
-    body: "One charged surface at a time. Don't stack textures or let them fight the content.",
+    body: "Use one texture at a time. Don't stack them or let them fight the content.",
   },
 ];
 
@@ -42,7 +42,7 @@ export function Textures() {
       label="Textures"
       variant="dark"
       title="Textures"
-      blurb="The thermal gradient and grain — EXPOSURE's signature surface. Heat bleeding from off-black through red and gold, always grainy, never clean."
+      blurb="The thermal gradient and grain are EXPOSURE's signature surface: heat moving from off-black through red and gold, always grainy."
     >
       {/* Hero motion texture */}
       <Reveal>
