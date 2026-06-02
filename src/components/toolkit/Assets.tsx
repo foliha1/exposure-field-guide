@@ -11,28 +11,22 @@ type AssetCard = {
 
 const assets: AssetCard[] = [
   {
-    name: "Logo Pack",
-    format: "SVG · PNG",
-    file: "logo-pack.zip",
+    name: "Logos",
+    format: "SVG \u00b7 PNG",
+    file: "EXPOSURE Logos.zip",
     description: "Wordmark, lockups, and the delta mark. Light and dark variants.",
   },
   {
-    name: "Color File",
-    format: "ASE · JSON",
-    file: "color-file.zip",
-    description: "The four-color system as design tokens and a swatch library.",
+    name: "Textures",
+    format: "PNG",
+    file: "EXPOSURE Textures.zip",
+    description: "The thermal-gradient and grain textures for brand backgrounds and key art.",
   },
   {
-    name: "Fonts",
-    format: "WOFF2 · OTF",
-    file: "fonts.zip",
+    name: "Typefaces",
+    format: "WOFF2 \u00b7 OTF",
+    file: "EXPOSURE Typefaces.zip",
     description: "Canela Light and PP Neue Montreal. Licensed for brand use only.",
-  },
-  {
-    name: "Brand Guide",
-    format: "PDF",
-    file: "brand-guide.pdf",
-    description: "The full field guide — intent, system, usage, and examples.",
   },
 ];
 
@@ -44,9 +38,9 @@ export function Assets() {
       label="Assets"
       variant="dark"
       title={<>Take what you <em className="italic">need</em>.</>}
-      blurb="Everything you need to use the brand correctly: the logo pack, the four-color file as design tokens, the licensed typefaces, and the full brand guide as a PDF. Open access, no email gate."
+      blurb="The full asset library: logo files in SVG and PNG, the thermal and grain textures for backgrounds and key art, and the two licensed typefaces. Open access, no email gate."
     >
-      <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-3">
         {assets.map((a, i) => (
           <Reveal key={a.file} delay={0.05 + i * 0.04}>
             <article className="group relative flex h-full flex-col justify-between bg-ex-black p-8 md:p-10">
@@ -91,7 +85,7 @@ function DownloadButton({ file, disabled }: { file: string; disabled?: boolean }
   }
   return (
     <a
-      href={`/downloads/${file}`}
+      href={`/downloads/${encodeURIComponent(file)}`}
       download={file}
       className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
     >
