@@ -15,19 +15,19 @@ const assets: AssetCard[] = [
     name: "Logos",
     format: "SVG \u00b7 PNG",
     file: "EXPOSURE Logos.zip",
-    description: "Wordmark, lockups, and the delta mark. Light and dark variants.",
+    description: "Wordmark, lockups, and the triangle. Light and dark.",
   },
   {
     name: "Textures",
     format: "PNG",
     file: "EXPOSURE Textures.zip",
-    description: "The thermal-gradient and grain textures for brand backgrounds and key art.",
+    description: "Thermal gradient and grain textures for backgrounds and key art.",
   },
   {
     name: "Typefaces",
     format: "WOFF2 \u00b7 OTF",
     file: "EXPOSURE Typefaces.zip",
-    description: "Canela Light and PP Neue Montreal. Licensed for brand use only.",
+    description: "Canela Light and PP Neue Montreal. For brand use only.",
   },
 ];
 
@@ -67,7 +67,7 @@ export function Assets() {
       label="Assets"
       variant="dark"
       title="Assets"
-      blurb="The full asset library: logo files in SVG and PNG, the thermal and grain textures for backgrounds and key art, and the two licensed typefaces. Open access, no email gate."
+      blurb="Every brand file in one place: logos, textures, and typefaces. Open access, no sign-up."
     >
       {checked && brokenFiles.size > 0 && (
         <div

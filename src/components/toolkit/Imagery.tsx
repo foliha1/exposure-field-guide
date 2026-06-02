@@ -12,15 +12,15 @@ const frames = [
 const rules = [
   {
     eyebrow: "Tone",
-    body: "Warm and natural. Daylight, dusk, firelight — never fluorescent.",
+    body: "Warm and natural. Use daylight, dusk, or firelight. Never fluorescent.",
   },
   {
     eyebrow: "Stance",
-    body: "Candid over posed. Photograph the moment, not the setup. If it looks art-directed, recompose or cut it.",
+    body: "Catch the real moment, not a setup. If it looks staged, reshoot it or cut it.",
   },
   {
     eyebrow: "Subject",
-    body: "People in the work. Hands, huddles, faces mid-effort. Landscapes only as context — never the headline.",
+    body: "People in the work: hands, huddles, faces. Use landscapes only as background, never the focus.",
   },
 ];
 
@@ -32,7 +32,7 @@ export function Imagery() {
       label="Imagery"
       variant="light"
       title="Imagery"
-      blurb="Warm, natural, candid. Photograph people in the work — hands, huddles, faces mid-effort — in daylight, dusk, or firelight."
+      blurb="Warm, natural, and candid. Show people in the work — hands, huddles, real effort — in natural light."
     >
       <div className="grid grid-cols-2 gap-4 md:gap-6">
         {frames.map((f, i) => (

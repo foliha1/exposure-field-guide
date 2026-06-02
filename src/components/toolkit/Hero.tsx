@@ -34,7 +34,7 @@ export function Hero() {
 
         {/* Functional subtitle */}
         <p className="mt-5 max-w-xl text-sm leading-relaxed text-ex-white/60">
-          Brand guidelines and downloadable assets: intent, identity, type, color, imagery, and files.
+          Brand guidelines and downloadable files in one place.
         </p>
       </motion.div>
     </section>
