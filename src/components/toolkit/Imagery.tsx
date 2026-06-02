@@ -29,7 +29,7 @@ export function Imagery() {
       id="imagery"
       number="04"
       label="Imagery"
-      variant="light"
+      variant="dark"
       title="Imagery"
       blurb="Warm, natural, and candid. Show people in the work — hands, huddles, real effort — in natural light."
     >

@@ -115,10 +115,6 @@ export function Assets() {
           </Reveal>
         ))}
       </div>
-
-      <p className="mt-12 max-w-xl text-sm leading-relaxed text-ex-white/55">
-        Open access — no email gate. Use the files as shipped. If a use case isn't covered, contact the brand team and we'll add it.
-      </p>
     </Section>
   );
 }
