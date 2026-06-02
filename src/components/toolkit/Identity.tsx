@@ -9,9 +9,10 @@ import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.j
 import lockupTriDark from "@/assets/logos/EXPOSURE_Lockup-Tri_Dark.svg.asset.json";
 import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
-function DownloadStub() {
+function DownloadStub({ light = false }: { light?: boolean }) {
+  const hover = light ? "group-hover:text-ex-black/50" : "group-hover:text-ex-white/50";
   return (
-    <span className="absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/0 transition-colors duration-300 group-hover:text-ex-white/50">
+    <span className={`absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-transparent transition-colors duration-300 ${hover}`}>
       Download
     </span>
   );
@@ -90,7 +91,7 @@ export function Identity() {
               alt="EXPOSURE by 29029 — primary lockup"
               className="w-[220px] md:w-[280px] h-auto"
             />
-            <DownloadStub />
+            <DownloadStub light={isLight} />
           </div>
           <UsageNote>The primary mark. Use it at the top of any layout.</UsageNote>
         </div>
@@ -107,7 +108,7 @@ export function Identity() {
                 alt="EXPOSURE wordmark"
                 className="w-[220px] md:w-[280px] h-auto"
               />
-              <DownloadStub />
+              <DownloadStub light={isLight} />
             </div>
             <UsageNote>Secondary, for tight or supporting placements where the 29029 endorsement isn't needed.</UsageNote>
           </div>
@@ -122,7 +123,7 @@ export function Identity() {
                 alt="EXPOSURE lockup + triangle mark"
                 className="w-[220px] md:w-[280px] h-auto"
               />
-              <DownloadStub />
+              <DownloadStub light={isLight} />
             </div>
             <UsageNote>Use only when EXPOSURE needs to read as part of 29029 — external decks, sponsorships, co-branded placements. Not for EXPOSURE's own marketing.</UsageNote>
           </div>
