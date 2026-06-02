@@ -3,22 +3,23 @@ import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 
 const colors = [
-  { name: "EX Off-Black", hex: "#22211F", fr: 40, fg: "#E7E6E1" },
-  { name: "EX Off-White", hex: "#E7E6E1", fr: 40, fg: "#22211F" },
-  { name: "EX Red", hex: "#E1251B", fr: 15, fg: "#E7E6E1" },
-  { name: "EX Gold", hex: "#CC9933", fr: 5, fg: "#22211F" },
+  { name: "EX Off-Black", hex: "#22211F", fr: 40, fg: "#E7E6E1", rgb: "34 33 31" },
+  { name: "EX Off-White", hex: "#E7E6E1", fr: 40, fg: "#22211F", rgb: "231 230 225" },
+  { name: "EX Red", hex: "#E1251B", fr: 15, fg: "#E7E6E1", rgb: "225 37 27" },
+  { name: "EX Gold", hex: "#CC9933", fr: 5, fg: "#22211F", rgb: "204 153 51" },
 ];
 
 function SwatchTile({
   name,
   hex,
+  rgb,
   fg,
   copied,
   onCopy,
 }: {
   name: string;
   hex: string;
-  fr: number;
+  rgb: string;
   fg: string;
   copied: boolean;
   onCopy: () => void;
@@ -26,28 +27,36 @@ function SwatchTile({
   return (
     <button
       onClick={onCopy}
-      className="group relative flex cursor-pointer flex-col justify-between border-0 p-5 text-left transition-[filter,transform] duration-200 hover:brightness-105 focus:outline-none md:p-7"
+      className="group relative aspect-square cursor-pointer border-0 p-4 text-left transition-[filter] duration-200 hover:brightness-105 focus:outline-none md:p-5"
       style={{
         backgroundColor: hex,
         color: fg,
       }}
     >
-      <span className="text-[10px] font-bold uppercase tracking-[0.28em] opacity-60 transition-opacity duration-200 group-hover:opacity-100">
-        {name}
-      </span>
-
-      <div className="mt-10 md:mt-14">
-        <span
-          className={`block font-sans text-lg font-medium leading-[1.2] tracking-normal transition-opacity duration-150 md:text-xl ${copied ? "opacity-0" : "opacity-100"}`}
-        >
-          {hex}
-        </span>
-        <span
-          className={`absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-7 md:left-7 ${copied ? "opacity-100" : "opacity-0"}`}
-        >
-          Copied
-        </span>
+      {/* Bottom-left spec stack */}
+      <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5">
+        <div className="flex flex-col gap-[3px] font-sans text-[11px] leading-[1.35]">
+          <div className="flex gap-1.5">
+            <span className="opacity-50">Name</span>
+            <span>{name}</span>
+          </div>
+          <div className="flex gap-1.5">
+            <span className="opacity-50">HEX</span>
+            <span>{hex}</span>
+          </div>
+          <div className="flex gap-1.5">
+            <span className="opacity-50">RGB</span>
+            <span>{rgb}</span>
+          </div>
+        </div>
       </div>
+
+      {/* Copied confirmation */}
+      <span
+        className={`absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-5 md:right-5 ${copied ? "opacity-100" : "opacity-0"}`}
+      >
+        Copied
+      </span>
     </button>
   );
 }
@@ -100,9 +109,9 @@ export function ColorSection() {
         </div>
       </Reveal>
 
-      {/* Swatch tiles */}
+      {/* Swatch tiles — equal flat blocks, 2x2 on small, 4 across on md+ */}
       <Reveal delay={0.06}>
-        <div className="mt-6 grid h-[220px] w-full grid-cols-4 md:h-[280px]">
+        <div className="mt-6 grid w-full grid-cols-2 md:grid-cols-4">
           {colors.map((c) => (
             <SwatchTile
               key={c.hex}
