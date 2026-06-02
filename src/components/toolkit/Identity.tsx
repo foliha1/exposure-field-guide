@@ -3,13 +3,28 @@ import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 import lockupLight from "@/assets/logos/EXPOSURE_Lockup_Light.svg.asset.json";
 import lockupTriLight from "@/assets/logos/EXPOSURE_Lockup-Tri_Light.svg.asset.json";
-import triangle from "@/assets/logos/29029_Triangle.svg.asset.json";
 
 function DownloadStub() {
   return (
     <span className="absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/0 transition-colors duration-300 group-hover:text-ex-white/50">
       Download
     </span>
+  );
+}
+
+function Label({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-ex-red">
+      {children}
+    </span>
+  );
+}
+
+function UsageNote({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mt-2 text-sm leading-relaxed text-ex-white/65">
+      {children}
+    </p>
   );
 }
 
@@ -21,52 +36,53 @@ export function Identity() {
       label="Logo"
       variant="dark"
       title={<>The <em className="italic">mark</em>.</>}
-      blurb="Three approved marks: the EXPOSURE wordmark, the lockup with 29029, and the standalone delta. Whichever you reach for, keep one triangle-height of clearspace on every side — that single rule outranks the others."
+      blurb="Two approved marks: the primary lockup and the wordmark. The triangle is a graphic device — used for texture, pattern, and system identity — not a standalone logo. Keep one triangle-height of clearspace on every side of any mark."
     >
-      {/* Primary lockup — large */}
+      {/* 1. Primary lockup — large */}
       <Reveal>
-        <div className="group relative flex items-center justify-center border border-ex-white/15 p-16 md:p-24">
-          <img
-            src={lockupLight.url}
-            alt="EXPOSURE by 29029 — primary lockup"
-            className="w-[280px] md:w-[380px] h-auto"
-          />
-          <DownloadStub />
+        <div>
+          <Label>Primary Lockup</Label>
+          <div className="group relative mt-3 flex items-center justify-center border border-ex-white/15 p-16 md:p-24">
+            <img
+              src={lockupLight.url}
+              alt="EXPOSURE by 29029 — primary lockup"
+              className="w-[280px] md:w-[380px] h-auto"
+            />
+            <DownloadStub />
+          </div>
+          <UsageNote>The primary mark. Use it at the top of any layout.</UsageNote>
         </div>
       </Reveal>
 
-      {/* Row of marks */}
-      <div className="mt-4 grid grid-cols-1 gap-px md:grid-cols-3">
+      {/* 2. Wordmark + 3. Lockup + Triangle */}
+      <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
         <Reveal delay={0.05}>
-          <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
-            <img
-              src={exposureLight.url}
-              alt="EXPOSURE wordmark"
-              className="w-[220px] md:w-[280px] h-auto"
-            />
-            <DownloadStub />
+          <div>
+            <Label>Wordmark</Label>
+            <div className="group relative mt-3 flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+              <img
+                src={exposureLight.url}
+                alt="EXPOSURE wordmark"
+                className="w-[220px] md:w-[280px] h-auto"
+              />
+              <DownloadStub />
+            </div>
+            <UsageNote>Secondary, for tight or supporting placements where the 29029 endorsement isn't needed.</UsageNote>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
-            <img
-              src={lockupTriLight.url}
-              alt="EXPOSURE lockup + triangle mark"
-              className="w-[220px] md:w-[280px] h-auto"
-            />
-            <DownloadStub />
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.15}>
-          <div className="group relative flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
-            <img
-              src={triangle.url}
-              alt="29029 triangle mark"
-              className="h-12 w-auto md:h-14"
-            />
-            <DownloadStub />
+          <div>
+            <Label>Lockup + Triangle</Label>
+            <div className="group relative mt-3 flex items-center justify-center border border-ex-white/15 p-14 md:p-20 hover:border-ex-white/30 transition-colors duration-300">
+              <img
+                src={lockupTriLight.url}
+                alt="EXPOSURE lockup + triangle mark"
+                className="w-[220px] md:w-[280px] h-auto"
+              />
+              <DownloadStub />
+            </div>
+            <UsageNote>Use only when EXPOSURE needs to read as part of 29029 — external decks, sponsorships, co-branded placements. Not for EXPOSURE's own marketing.</UsageNote>
           </div>
         </Reveal>
       </div>
