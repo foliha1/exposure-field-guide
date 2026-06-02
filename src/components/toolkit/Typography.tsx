@@ -99,6 +99,38 @@ export function Typography() {
           </div>
         </div>
       </Reveal>
+      {/* Character set specimen */}
+      <Reveal delay={0.04}>
+        <div className="mt-10 border-t border-ex-black/10 pt-10 md:pt-14">
+          <div className="grid grid-cols-1 gap-14 md:grid-cols-2 md:gap-12">
+            {/* Canela */}
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40 block mb-6">
+                Canela Light
+              </span>
+              <p className="font-display text-[clamp(1.125rem,2.5vw,1.5rem)] font-light leading-[1.65] tracking-[0.04em] text-ex-black">
+                A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
+              </p>
+              <p className="mt-4 font-display text-[clamp(1.125rem,2.5vw,1.5rem)] font-light leading-[1.65] tracking-[0.04em] text-ex-black">
+                0 1 2 3 4 5 6 7 8 9 &amp; . , ; : ! ? — / ( )
+              </p>
+            </div>
+
+            {/* PP Neue Montreal */}
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40 block mb-6">
+                PP Neue Montreal Regular
+              </span>
+              <p className="text-[clamp(1.125rem,2.5vw,1.5rem)] font-normal leading-[1.65] tracking-[0.04em] text-ex-black">
+                A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
+              </p>
+              <p className="mt-4 text-[clamp(1.125rem,2.5vw,1.5rem)] font-normal leading-[1.65] tracking-[0.04em] text-ex-black">
+                0 1 2 3 4 5 6 7 8 9 &amp; . , ; : ! ? — / ( )
+              </p>
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
       <div className="space-y-2 mt-10">
         {/* H1 / Hero */}
