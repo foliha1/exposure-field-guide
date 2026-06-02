@@ -12,7 +12,7 @@ const frames = [
 const rules = [
   {
     eyebrow: "Tone",
-    body: "Warm and natural. No cool casts, no heavy grading, no filters. Daylight, dusk, firelight — never fluorescent.",
+    body: "Warm and natural. Daylight, dusk, firelight — never fluorescent.",
   },
   {
     eyebrow: "Stance",
@@ -31,8 +31,8 @@ export function Imagery() {
       number="05"
       label="Imagery"
       variant="light"
-      title={<>Real people, <em className="italic">real effort</em>.</>}
-      blurb="Warm, natural, candid. Photograph people in the work — hands, huddles, faces mid-effort — in daylight, dusk, or firelight. No heavy grading, no posed setups, no landscapes as the headline."
+      title="Imagery"
+      blurb="Warm, natural, candid. Photograph people in the work — hands, huddles, faces mid-effort — in daylight, dusk, or firelight."
     >
       <div className="grid grid-cols-2 gap-4 md:gap-6">
         {frames.map((f, i) => (
