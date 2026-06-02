@@ -104,7 +104,6 @@ export function ColorSection() {
             <SwatchTile
               key={c.hex}
               {...c}
-              copied={copiedHex === c.hex}
               onCopy={() => handleCopy(c.hex)}
             />
           ))}
@@ -150,7 +149,7 @@ export function ColorSection() {
         className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
         style={{ borderRadius: 9999 }}
       >
-        {tagCopied ? "Copied" : "Copy Hex"}
+        Copy Hex
       </div>
 
       {/* Caption */}
