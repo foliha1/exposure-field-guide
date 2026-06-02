@@ -11,28 +11,22 @@ type AssetCard = {
 
 const assets: AssetCard[] = [
   {
-    name: "Logo Pack",
-    format: "SVG · PNG",
-    file: "logo-pack.zip",
+    name: "Logos",
+    format: "SVG \u00b7 PNG",
+    file: "EXPOSURE Logos.zip",
     description: "Wordmark, lockups, and the delta mark. Light and dark variants.",
   },
   {
-    name: "Color File",
-    format: "ASE · JSON",
-    file: "color-file.zip",
-    description: "The four-color system as design tokens and a swatch library.",
+    name: "Textures",
+    format: "PNG",
+    file: "EXPOSURE Textures.zip",
+    description: "The thermal-gradient and grain textures for brand backgrounds and key art.",
   },
   {
-    name: "Fonts",
-    format: "WOFF2 · OTF",
-    file: "fonts.zip",
+    name: "Typefaces",
+    format: "WOFF2 \u00b7 OTF",
+    file: "EXPOSURE Typefaces.zip",
     description: "Canela Light and PP Neue Montreal. Licensed for brand use only.",
-  },
-  {
-    name: "Brand Guide",
-    format: "PDF",
-    file: "brand-guide.pdf",
-    description: "The full field guide — intent, system, usage, and examples.",
   },
 ];
 
