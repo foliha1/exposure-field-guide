@@ -1,35 +1,6 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 
-function Specimen({
-  label,
-  spec,
-  family,
-  children,
-  delay = 0,
-}: {
-  label: string;
-  spec: string;
-  family: string;
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  return (
-    <Reveal delay={delay}>
-      <div className="group border-t border-ex-black/10 pt-10 md:pt-14">
-        <div className="mb-6 flex flex-col gap-1 md:mb-8">
-          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
-            {label}
-          </span>
-          <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
-            {family} · {spec}
-          </span>
-        </div>
-        {children}
-      </div>
-    </Reveal>
-  );
-}
 
 export function Typography() {
   return (
@@ -132,90 +103,131 @@ export function Typography() {
         </div>
       </Reveal>
 
-      <div className="space-y-2 mt-10">
-        {/* H1 / Hero */}
-        <Specimen
-          label="H1 / Hero"
-          spec="72px / 1.0"
-          family="Canela Light"
-        >
-          <p className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light uppercase leading-[1.0] tracking-[-0.02em] text-ex-black">
-            Your team won't be the <em className="italic">same</em>
-          </p>
-        </Specimen>
+      {/* Hierarchy scale */}
+      <Reveal delay={0.04}>
+        <div className="mt-10 border-t border-ex-black/10 pt-10 md:pt-14">
+          <div className="divide-y divide-ex-black/5">
+            {/* H1 / Hero */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  H1 / Hero
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  Canela Light · 72px / 1.0
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light uppercase leading-[1.0] tracking-[-0.02em] text-ex-black">
+                  Your team <em className="italic">won't</em> be the same
+                </p>
+              </div>
+            </div>
 
-        {/* H2 / Section heads */}
-        <Specimen
-          label="H2 / Section Head"
-          spec="48px / 1.05"
-          family="Canela Light"
-          delay={0.04}
-        >
-          <p className="font-display text-[clamp(1.75rem,4vw,3rem)] font-light uppercase leading-[1.05] tracking-[-0.02em] text-ex-black">
-            Four colors, <em className="italic">held in ratio</em>
-          </p>
-        </Specimen>
+            {/* H2 / Section Head */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  H2 / Section Head
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  Canela Light · 48px / 1.05
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="font-display text-[clamp(1.75rem,4vw,3rem)] font-light uppercase leading-[1.05] tracking-[-0.02em] text-ex-black">
+                  Where teams find their <em className="italic">edge</em>
+                </p>
+              </div>
+            </div>
 
-        {/* Pull quote */}
-        <Specimen
-          label="Pull Quote"
-          spec="32px / 1.2"
-          family="Canela Light"
-          delay={0.08}
-        >
-          <p className="font-display text-[clamp(1.25rem,2.5vw,2rem)] font-light leading-[1.2] tracking-[-0.01em] text-ex-black">
-            The point is not the mountain. The point is who you are with each other at <em className="italic">hour fourteen</em>.
-          </p>
-        </Specimen>
+            {/* Pull Quote */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  Pull Quote
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  Canela Light · 32px / 1.2
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="font-display text-[clamp(1.25rem,2.5vw,2rem)] font-light leading-[1.2] tracking-[-0.01em] text-ex-black">
+                  We didn't know what we were capable of until hour fourteen.
+                </p>
+              </div>
+            </div>
 
-        {/* H3 / Block titles */}
-        <Specimen
-          label="H3 / Block Title"
-          spec="22px / 1.3"
-          family="PP Neue Montreal Bold"
-          delay={0.12}
-        >
-          <p className="text-[22px] font-bold leading-[1.3] tracking-[-0.01em] text-ex-black">
-            Exposure exists to develop leaders through endurance
-          </p>
-        </Specimen>
+            {/* H3 / Block Title */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  H3 / Block Title
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  PP Neue Montreal Bold · 22px / 1.3
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="text-[22px] font-bold leading-[1.3] tracking-[-0.01em] text-ex-black">
+                  Built on the 29029 method
+                </p>
+              </div>
+            </div>
 
-        {/* Eyebrow / Label */}
-        <Specimen
-          label="Eyebrow / Label"
-          spec="13px / 1.4 · tracked 0.28em"
-          family="PP Neue Montreal Bold"
-          delay={0.16}
-        >
-          <p className="text-[13px] font-bold uppercase leading-[1.4] tracking-[0.28em] text-ex-black">
-            Exposure by 29029
-          </p>
-        </Specimen>
+            {/* Eyebrow / Label */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  Eyebrow / Label
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  PP Neue Montreal Bold · 13px / 1.4 · tracked 0.28em
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="text-[13px] font-bold uppercase leading-[1.4] tracking-[0.28em] text-ex-black">
+                  EXPOSURE BY 29029
+                </p>
+              </div>
+            </div>
 
-        {/* Body */}
-        <Specimen
-          label="Body"
-          spec="17px / 1.6"
-          family="PP Neue Montreal Regular"
-          delay={0.20}
-        >
-          <p className="max-w-2xl text-[17px] leading-[1.6] tracking-[-0.01em] text-ex-black/80">
-            We put teams under sustained physical and decision-making load — not to break them, but to reveal what they are capable of together. The program compounds: each stage builds on the last, and the effect persists long after the event ends.
-          </p>
-        </Specimen>
+            {/* Body */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  Body
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  PP Neue Montreal Regular · 17px / 1.6
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="max-w-2xl text-[17px] leading-[1.6] tracking-[-0.01em] text-ex-black/80">
+                  EXPOSURE puts teams under real, sustained load — not to break them, but to show them what they can do together. The shift holds long after the event ends.
+                </p>
+              </div>
+            </div>
 
-        {/* Caption / Attribution */}
-        <Specimen
-          label="Caption / Attribution"
-          spec="13px / 1.5"
-          family="PP Neue Montreal Regular"
-          delay={0.24}
-        >
-          <p className="text-[13px] leading-[1.5] text-ex-black/50">
-            The 29029 core belief: growth happens under real pressure. Not simulated. Not workshop-grade.
-          </p>
-        </Specimen>
-      </div>
+            {/* Caption / Attribution */}
+            <div className="grid grid-cols-1 items-start gap-2 py-4 md:grid-cols-12 md:gap-6 md:py-5">
+              <div className="md:col-span-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black">
+                  Caption / Attribution
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.28em] text-ex-black/40">
+                  PP Neue Montreal Regular · 13px / 1.5
+                </span>
+              </div>
+              <div className="md:col-span-9">
+                <p className="text-[13px] leading-[1.5] text-ex-black/50">
+                  Field Guide — Typography, v1
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
       {/* In use */}
       <Reveal delay={0.04}>
@@ -229,7 +241,7 @@ export function Typography() {
             </span>
           </div>
           <p className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.05] tracking-[-0.02em] text-ex-black">
-            Your team <em className="italic">won't</em> be the same
+            Where teams find their <em className="italic">edge</em>
           </p>
           <p className="mt-6 max-w-2xl text-[17px] leading-[1.6] tracking-[-0.01em] text-ex-black/80">
             We put teams under sustained physical and decision-making load — not to break them, but to reveal what they are capable of together.
