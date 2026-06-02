@@ -85,7 +85,7 @@ function DownloadButton({ file, disabled }: { file: string; disabled?: boolean }
   }
   return (
     <a
-      href={`/downloads/${file}`}
+      href={`/downloads/${encodeURIComponent(file)}`}
       download={file}
       className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
     >
