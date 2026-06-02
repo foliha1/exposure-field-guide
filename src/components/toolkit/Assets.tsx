@@ -38,9 +38,9 @@ export function Assets() {
       label="Assets"
       variant="dark"
       title={<>Take what you <em className="italic">need</em>.</>}
-      blurb="Everything you need to use the brand correctly: the logo pack, the four-color file as design tokens, the licensed typefaces, and the full brand guide as a PDF. Open access, no email gate."
+      blurb="The full asset library: logo files in SVG and PNG, the thermal and grain textures for backgrounds and key art, and the two licensed typefaces. Open access, no email gate."
     >
-      <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-3">
         {assets.map((a, i) => (
           <Reveal key={a.file} delay={0.05 + i * 0.04}>
             <article className="group relative flex h-full flex-col justify-between bg-ex-black p-8 md:p-10">
