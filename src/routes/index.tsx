@@ -5,6 +5,7 @@ import { Identity } from "@/components/toolkit/Identity";
 import { Typography } from "@/components/toolkit/Typography";
 import { ColorSection } from "@/components/toolkit/Color";
 import { Imagery } from "@/components/toolkit/Imagery";
+import { Textures } from "@/components/toolkit/Textures";
 import { Assets } from "@/components/toolkit/Assets";
 import { Footer } from "@/components/toolkit/Footer";
 
@@ -29,8 +30,10 @@ function Index() {
       <ColorSection />
       <Typography />
       <Imagery />
+      <Textures />
       <Assets />
       <Footer />
     </main>
   );
 }
+
