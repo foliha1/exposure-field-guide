@@ -10,13 +10,13 @@ import t6 from "@/assets/textures/Textures6.jpg.asset.json";
 import t7 from "@/assets/textures/Textures7.jpg.asset.json";
 
 const stills = [
-  { src: t1.url, caption: "Thermal drift" },
-  { src: t2.url, caption: "Grain field" },
-  { src: t3.url, caption: "Heat bloom" },
-  { src: t4.url, caption: "Off-black bleed" },
-  { src: t5.url, caption: "Copper strand" },
-  { src: t6.url, caption: "Ember wash" },
-  { src: t7.url, caption: "Ash edge" },
+  { src: t1.url },
+  { src: t2.url },
+  { src: t3.url },
+  { src: t4.url },
+  { src: t5.url },
+  { src: t6.url },
+  { src: t7.url },
 ];
 
 const rules = [
@@ -62,19 +62,14 @@ export function Textures() {
       <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
         {stills.map((s, i) => (
           <Reveal key={s.src} delay={0.05 + i * 0.04}>
-            <figure className="m-0">
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-ex-white/5">
-                <img
-                  src={s.src}
-                  alt={s.caption}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-              <figcaption className="mt-3 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.22em] text-ex-white/50">
-                <span>{String(i + 1).padStart(2, "0")} · {s.caption}</span>
-              </figcaption>
-            </figure>
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-ex-white/5">
+              <img
+                src={s.src}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </Reveal>
         ))}
       </div>
