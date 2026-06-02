@@ -54,7 +54,7 @@ export function Identity() {
   return (
     <Section
       id="logo"
-      number="02"
+      number="01"
       label="Logo"
       variant="dark"
       title="Logo"
