@@ -21,6 +21,7 @@ export function Identity() {
       label="Logo"
       variant="dark"
       title={<>The <em className="italic">mark</em>.</>}
+      blurb="Three approved marks: the EXPOSURE wordmark, the lockup with 29029, and the standalone delta. Whichever you reach for, keep one triangle-height of clearspace on every side — that single rule outranks the others."
     >
       {/* Primary lockup — large */}
       <Reveal>
