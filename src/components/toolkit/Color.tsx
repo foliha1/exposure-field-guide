@@ -14,14 +14,12 @@ function SwatchTile({
   hex,
   rgb,
   fg,
-  copied,
   onCopy,
 }: {
   name: string;
   hex: string;
   rgb: string;
   fg: string;
-  copied: boolean;
   onCopy: () => void;
 }) {
   return (
