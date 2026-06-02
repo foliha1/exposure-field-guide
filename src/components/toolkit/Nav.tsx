@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 
 const links = [
-  { id: "intent", label: "Intent" },
   { id: "logo", label: "Logo" },
   { id: "color", label: "Color" },
   { id: "type", label: "Type" },

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
@@ -30,38 +30,26 @@ export function Identity() {
   const isLight = mode === "light";
   const cellBg = isLight ? "bg-ex-white" : "bg-transparent";
   const cellBorder = isLight ? "border-ex-black/10 hover:border-ex-black/25" : "border-ex-white/15 hover:border-ex-white/30";
-  const markCell = `group relative mt-3 flex h-[285px] items-center justify-center border p-14 transition-colors duration-300 md:h-[285px] md:p-20 ${cellBg} ${cellBorder}`;
+  const markCell = `group relative mt-3 flex h-[285px] items-center justify-center border p-14 transition-colors duration-300 md:h-[285px] md:p-20 md:cursor-none ${cellBg} ${cellBorder} [&_*]:cursor-none`;
   const lockupSrc = isLight ? lockupDark.url : lockupLight.url;
   const wordmarkSrc = isLight ? exposureDark.url : exposureLight.url;
   const lockupTriSrc = isLight ? lockupTriDark.url : lockupTriLight.url;
 
-  const logoRef = useRef<HTMLDivElement>(null);
   const tagRef = useRef<HTMLDivElement>(null);
   const [tagVisible, setTagVisible] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(hover: none)").matches) return;
-    const wrapper = logoRef.current;
-    if (!wrapper) return;
-
-    const onMove = (e: MouseEvent) => {
+  const cellHandlers = {
+    onMouseEnter: () => {
+      if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+      setTagVisible(true);
+    },
+    onMouseLeave: () => setTagVisible(false),
+    onMouseMove: (e: React.MouseEvent) => {
       const el = tagRef.current;
       if (!el) return;
       el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, calc(-100% - 14px))`;
-    };
-    const onEnter = () => setTagVisible(true);
-    const onLeave = () => setTagVisible(false);
-
-    wrapper.addEventListener("mousemove", onMove);
-    wrapper.addEventListener("mouseenter", onEnter);
-    wrapper.addEventListener("mouseleave", onLeave);
-    return () => {
-      wrapper.removeEventListener("mousemove", onMove);
-      wrapper.removeEventListener("mouseenter", onEnter);
-      wrapper.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
+    },
+  };
 
   return (
     <Section
@@ -69,7 +57,7 @@ export function Identity() {
       number="02"
       label="Logo"
       variant="dark"
-      title={<>The <em className="italic">mark</em>.</>}
+      title="Logo"
       blurb="Two approved marks: the primary lockup and the wordmark. The triangle is a graphic device — used for texture, pattern, and system identity — not a standalone logo. Keep one triangle-height of clearspace on every side of any mark."
     >
       {/* Dark / Light toggle */}
@@ -106,18 +94,18 @@ export function Identity() {
       <div
         ref={tagRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-black px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
+        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-red px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
         style={{ borderRadius: 9999 }}
       >
         Download logo
       </div>
 
-      <div ref={logoRef} className="[&_*]:cursor-none md:cursor-none">
+      <div>
         {/* 1. Primary lockup */}
         <Reveal>
           <div className="mt-4">
             <Label>Primary Lockup</Label>
-            <div className={markCell}>
+            <div className={markCell} {...cellHandlers}>
               <img
                 src={lockupSrc}
                 alt="EXPOSURE by 29029 — primary lockup"
@@ -133,7 +121,7 @@ export function Identity() {
           <Reveal delay={0.05}>
             <div>
               <Label>Wordmark</Label>
-              <div className={markCell}>
+              <div className={markCell} {...cellHandlers}>
                 <img
                   src={wordmarkSrc}
                   alt="EXPOSURE wordmark"
@@ -147,7 +135,7 @@ export function Identity() {
           <Reveal delay={0.1}>
             <div>
               <Label>Lockup + Triangle</Label>
-              <div className={markCell}>
+              <div className={markCell} {...cellHandlers}>
                 <img
                   src={lockupTriSrc}
                   alt="EXPOSURE lockup + triangle mark"

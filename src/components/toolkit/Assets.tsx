@@ -66,7 +66,7 @@ export function Assets() {
       number="06"
       label="Assets"
       variant="dark"
-      title={<>Take what you <em className="italic">need</em>.</>}
+      title="Assets"
       blurb="The full asset library: logo files in SVG and PNG, the thermal and grain textures for backgrounds and key art, and the two licensed typefaces. Open access, no email gate."
     >
       {checked && brokenFiles.size > 0 && (
@@ -138,7 +138,7 @@ function DownloadButton({
         aria-disabled
         className="inline-flex items-center gap-2 border border-ex-white/15 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white/30"
       >
-        ▲ {broken ? "Broken link" : "Unavailable"}
+        {broken ? "Broken link" : "Unavailable"}
       </span>
     );
   }
@@ -148,7 +148,7 @@ function DownloadButton({
       download={file}
       className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
     >
-      ▲ Download
+      Download
     </a>
   );
 }
