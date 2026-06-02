@@ -92,6 +92,7 @@
   --color-ex-white: var(--ex-white);
   --color-ex-red: var(--ex-red);
   --color-ex-gold: var(--ex-gold);
+  --color-ex-off-black: var(--ex-off-black);
   --font-display: "Canela", "Times New Roman", serif;
   --font-sans: "PP Neue Montreal", ui-sans-serif, system-ui, sans-serif;
 }
@@ -99,6 +100,7 @@
 :root {
   --radius: 0.625rem;
   --ex-black: #22211F;
+  --ex-off-black: #1A1918;
   --ex-white: #E7E6E1;
   --ex-red:   #E1251B;
   --ex-gold:  #CC9933;
