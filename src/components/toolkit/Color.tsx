@@ -48,22 +48,13 @@ function SwatchTile({
           </div>
         </div>
       </div>
-
-      {/* Copied confirmation */}
-      <span
-        className={`absolute bottom-4 right-4 text-[10px] font-bold uppercase tracking-[0.28em] transition-opacity duration-150 md:bottom-5 md:right-5 ${copied ? "opacity-100" : "opacity-0"}`}
-      >
-        Copied
-      </span>
     </button>
   );
 }
 
 export function ColorSection() {
-  const [copiedHex, setCopiedHex] = useState<string | null>(null);
   const tagRef = useRef<HTMLDivElement>(null);
   const [tagVisible, setTagVisible] = useState(false);
-  const [tagCopied, setTagCopied] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,10 +84,6 @@ export function ColorSection() {
   const handleCopy = useCallback(
     (hex: string) => {
       navigator.clipboard.writeText(hex).catch(() => {});
-      setCopiedHex(hex);
-      setTagCopied(true);
-      window.setTimeout(() => setCopiedHex((current) => (current === hex ? null : current)), 1200);
-      window.setTimeout(() => setTagCopied(false), 1200);
     },
     []
   );
