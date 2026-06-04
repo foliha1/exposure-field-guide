@@ -12,19 +12,19 @@ const assets: AssetCard[] = [
   {
     name: "Logos",
     format: "SVG \u00b7 PNG",
-    file: "EXPOSURE Logos.zip",
+    file: "EXPOSURE-Logos.zip",
     description: "Wordmark, lockups, and the triangle. Light and dark.",
   },
   {
     name: "Textures",
     format: "PNG",
-    file: "EXPOSURE Textures.zip",
+    file: "EXPOSURE-Textures.zip",
     description: "Thermal gradient and grain textures for backgrounds and key art.",
   },
   {
     name: "Typefaces",
     format: "WOFF2 \u00b7 OTF",
-    file: "EXPOSURE Typefaces.zip",
+    file: "EXPOSURE-Typefaces.zip",
     description: "Canela Light and PP Neue Montreal. For brand use only.",
   },
 ];
@@ -70,7 +70,7 @@ export function Assets() {
 function DownloadButton({ file }: { file: string }) {
   return (
     <a
-      href={`/downloads/${encodeURIComponent(file)}`}
+      href={`/downloads/${file}`}
       download={file}
       className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
     >

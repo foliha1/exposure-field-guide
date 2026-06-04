@@ -135,13 +135,13 @@ export function Textures() {
       <Reveal delay={0.2}>
         <div className="mt-16 flex items-center gap-6">
           <a
-            href="/downloads/EXPOSURE%20Textures.zip"
-            download="EXPOSURE Textures.zip"
+            href="/downloads/EXPOSURE-Textures.zip"
+            download="EXPOSURE-Textures.zip"
             className="inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
           >
             Download texture pack
           </a>
-          <span className="font-mono text-[11px] text-ex-white/40">EXPOSURE Textures.zip · PNG</span>
+          <span className="font-mono text-[11px] text-ex-white/40">EXPOSURE-Textures.zip · PNG</span>
         </div>
       </Reveal>
     </Section>
