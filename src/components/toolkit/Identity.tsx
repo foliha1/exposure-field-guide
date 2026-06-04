@@ -35,6 +35,10 @@ export function Identity() {
   const wordmarkSrc = isLight ? exposureDark.url : exposureLight.url;
   const lockupTriSrc = isLight ? lockupTriDark.url : lockupTriLight.url;
 
+  const lockupFile = isLight ? "EXPOSURE_Lockup_Dark.svg" : "EXPOSURE_Lockup_Light.svg";
+  const wordmarkFile = isLight ? "EXPOSURE_Dark.svg" : "EXPOSURE_Light.svg";
+  const lockupTriFile = isLight ? "EXPOSURE_Lockup-Tri_Dark.svg" : "EXPOSURE_Lockup-Tri_Light.svg";
+
   const tagRef = useRef<HTMLDivElement>(null);
   const [tagVisible, setTagVisible] = useState(false);
 
@@ -105,13 +109,19 @@ export function Identity() {
         <Reveal>
           <div className="mt-4">
             <Label>Primary Lockup</Label>
-            <div className={markCell} {...cellHandlers}>
+            <a
+              href={lockupSrc}
+              download={lockupFile}
+              aria-label={`Download ${lockupFile}`}
+              className={markCell}
+              {...cellHandlers}
+            >
               <img
                 src={lockupSrc}
                 alt="EXPOSURE by 29029 — primary lockup"
                 className="h-auto max-h-full w-[220px] md:w-[280px]"
               />
-            </div>
+            </a>
             <UsageNote>The primary mark. Use it at the top of any layout.</UsageNote>
           </div>
         </Reveal>
@@ -121,13 +131,19 @@ export function Identity() {
           <Reveal delay={0.05}>
             <div>
               <Label>Wordmark</Label>
-              <div className={markCell} {...cellHandlers}>
+              <a
+                href={wordmarkSrc}
+                download={wordmarkFile}
+                aria-label={`Download ${wordmarkFile}`}
+                className={markCell}
+                {...cellHandlers}
+              >
                 <img
                   src={wordmarkSrc}
                   alt="EXPOSURE wordmark"
                   className="h-auto max-h-full w-[220px] md:w-[280px]"
                 />
-              </div>
+              </a>
               <UsageNote>Secondary, for tight or supporting placements where the 29029 endorsement isn't needed.</UsageNote>
             </div>
           </Reveal>
@@ -135,13 +151,19 @@ export function Identity() {
           <Reveal delay={0.1}>
             <div>
               <Label>Lockup + Triangle</Label>
-              <div className={markCell} {...cellHandlers}>
+              <a
+                href={lockupTriSrc}
+                download={lockupTriFile}
+                aria-label={`Download ${lockupTriFile}`}
+                className={markCell}
+                {...cellHandlers}
+              >
                 <img
                   src={lockupTriSrc}
                   alt="EXPOSURE lockup + triangle mark"
                   className="h-auto max-h-full w-[220px] md:w-[280px]"
                 />
-              </div>
+              </a>
               <UsageNote>Use only when EXPOSURE needs to read as part of 29029 — external decks, sponsorships, co-branded placements. Not for EXPOSURE's own marketing.</UsageNote>
             </div>
           </Reveal>
