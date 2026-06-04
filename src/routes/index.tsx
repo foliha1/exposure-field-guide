@@ -8,7 +8,7 @@ import { Imagery } from "@/components/toolkit/Imagery";
 import { Textures } from "@/components/toolkit/Textures";
 import { Assets } from "@/components/toolkit/Assets";
 import { Footer } from "@/components/toolkit/Footer";
-import { PasswordGate } from "@/components/toolkit/PasswordGate";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,19 +24,17 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <PasswordGate>
-      <main className="min-h-screen bg-ex-white text-ex-black">
-        <Nav />
-        <Hero />
-        <Identity />
-        <ColorSection />
-        <Typography />
-        <Imagery />
-        <Textures />
-        <Assets />
-        <Footer />
-      </main>
-    </PasswordGate>
+    <main className="min-h-screen bg-ex-white text-ex-black">
+      <Nav />
+      <Hero />
+      <Identity />
+      <ColorSection />
+      <Typography />
+      <Imagery />
+      <Textures />
+      <Assets />
+      <Footer />
+    </main>
   );
 }
 
