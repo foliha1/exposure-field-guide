@@ -37,7 +37,7 @@ export function Assets() {
       label="Assets"
       variant="dark"
       title="Assets"
-      blurb="Every brand file in one place: logos, textures, and typefaces. Open access, no sign-up."
+      blurb="Every brand file in one place: logos, textures, and typefaces."
     >
       <div className="grid grid-cols-1 gap-px bg-ex-white/15 sm:grid-cols-3">
         {assets.map((a, i) => (
