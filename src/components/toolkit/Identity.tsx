@@ -55,6 +55,34 @@ export function Identity() {
     },
   };
 
+  const handleDownload = async (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    url: string,
+    filename: string,
+  ) => {
+    // Safari ignores the `download` attribute filename on cross-origin
+    // responses (the SVGs are served from the asset CDN). Fetch the file
+    // and trigger a save from an object URL so the intended filename sticks.
+    e.preventDefault();
+    try {
+      const res = await fetch(url, { credentials: "omit" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = objectUrl;
+      a.download = filename;
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    } catch {
+      // Fall back to a normal navigation if fetch fails (e.g. CORS).
+      window.location.href = url;
+    }
+  };
+
   return (
     <Section
       id="logo"
@@ -114,6 +142,7 @@ export function Identity() {
               download={lockupFile}
               aria-label={`Download ${lockupFile}`}
               className={markCell}
+              onClick={(e) => handleDownload(e, lockupSrc, lockupFile)}
               {...cellHandlers}
             >
               <img
@@ -136,6 +165,7 @@ export function Identity() {
                 download={wordmarkFile}
                 aria-label={`Download ${wordmarkFile}`}
                 className={markCell}
+                onClick={(e) => handleDownload(e, wordmarkSrc, wordmarkFile)}
                 {...cellHandlers}
               >
                 <img
@@ -156,6 +186,7 @@ export function Identity() {
                 download={lockupTriFile}
                 aria-label={`Download ${lockupTriFile}`}
                 className={markCell}
+                onClick={(e) => handleDownload(e, lockupTriSrc, lockupTriFile)}
                 {...cellHandlers}
               >
                 <img
