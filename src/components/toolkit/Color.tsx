@@ -158,6 +158,20 @@ export function ColorSection() {
           Use off-black and off-white as your main backgrounds, and switch between them to keep things fresh. Save red for buttons, the mark, and emphasis. Use gold rarely — one small touch per surface.
         </p>
       </Reveal>
+
+      {/* Download */}
+      <Reveal delay={0.16}>
+        <div className="mt-10 flex items-center gap-6">
+          <a
+            href="/downloads/EXPOSURE%20Color%20Tokens.zip"
+            download="EXPOSURE Color Tokens.zip"
+            className="inline-flex items-center gap-2 border border-ex-black/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-black transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
+          >
+            Download color tokens
+          </a>
+          <span className="font-mono text-[11px] text-ex-black/40">EXPOSURE Color Tokens.zip · JSON · CSS</span>
+        </div>
+      </Reveal>
     </Section>
   );
 }
