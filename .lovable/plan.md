@@ -1,25 +1,36 @@
-## Findings
+## What's actually happening
 
-- **PDF brand guide**: Yes, `public/downloads/EXPOSURE Brand Guide.pdf` exists (8,842 bytes, real multi-page PDF generated previously).
-- **Assets "not properly linked"**: All 5 files are present in `public/downloads/` and the `<a download>` hrefs are correct. The visible problem is the runtime HEAD-check in `Assets.tsx` — on the preview URL, the auth bridge intercepts the HEAD request and returns a 302/HTML redirect that `fetch` resolves as non-`ok`, so the component flags every file as "broken" and shows the red error banner. The links themselves work when the user clicks them.
-- **Color hex copy**: `handleCopy` calls `navigator.clipboard.writeText` but gives no visual feedback.
+I inspected the four ZIPs in `public/downloads/` directly on the server. All four are **valid, well-formed archives** with the right contents:
 
-## Changes
+- `EXPOSURE Logos.zip` — 14 entries, SVG + PNG folders
+- `EXPOSURE Textures.zip` — 7 JPGs + 2 MP4s
+- `EXPOSURE Typefaces.zip` — Canela + PP Neue Montreal woff2s
+- `EXPOSURE Color Tokens.zip` — colors.json, colors.css, README.txt
 
-### 1. `src/components/toolkit/Assets.tsx` — remove the unreliable HEAD check
-- Delete the `useEffect` that probes each file via HEAD, the `brokenFiles`/`checked` state, and the red error banner.
-- Keep the `DownloadButton` simple: always render a working `<a href download>`. Drop the `broken`/`disabled` variants (no longer needed).
-- Net result: the false "Download error / files unreachable" alert disappears and the three Assets tiles work as plain download links.
+So the files themselves are fine. The reason your downloads won't open is that **the browser isn't actually downloading the ZIPs** — it's downloading an HTML error page that's been saved with a `.zip` extension. macOS / Windows then say "unsupported format" because the file is HTML, not a zip.
 
-### 2. `src/components/toolkit/Color.tsx` — "Copied" confirmation
-- Track `copiedHex` state. On swatch click, copy the hex, set `copiedHex` to that value, and clear it after ~1.4s.
-- Update the cursor-following tag text: show `Copied {hex}` (green/white) when that swatch was just copied, otherwise the existing `Copy Hex`.
-- Also add a small inline confirmation inside the active swatch (a tiny "Copied" pill in the top-right corner) for touch users who don't see the cursor tag.
+I confirmed this with HEAD requests:
 
-### 3. Brand guide — no change
-- File already exists and serves correctly. Just confirming to the user in the reply.
+- Published site (`exposure-brand-toolkit.lovable.app/downloads/EXPOSURE Logos.zip`) → **HTTP 404, content-type text/html**
+- Preview site → **HTTP 302 to the auth-bridge** (also HTML)
+
+The favicon (which was in `public/` at the last publish) returns 200 from the same published host, so static-asset serving works in general. The `/downloads/*` files just aren't in the deployed build yet — they were added after the most recent publish.
+
+## Fix
+
+**Republish the project.** That's the entire fix — no code changes needed. Once the new deployment ships, `https://exposure-brand-toolkit.lovable.app/downloads/EXPOSURE%20Logos.zip` will return the real zip with `content-type: application/zip` and downloads will open normally.
+
+```text
+<presentation-actions>
+  <presentation-open-publish>Publish your app</presentation-open-publish>
+</presentation-actions>
+```
+
+## What about the preview URL?
+
+The preview host (`id-preview--…lovable.app`) sits behind the Lovable auth-bridge, which 302-redirects unauthenticated requests for static files to an HTML login page. If you test downloads from the preview while signed out (or in a different browser session), you'll get the same "unsupported format" symptom even after republish. **Always test the download links on the published URL**, not the preview URL.
 
 ## Out of scope
 
-- No changes to logo SVG downloads, typeface zip, or color-tokens zip — all verified working.
-- No republish action. (Note: published site currently 404s on `/downloads/*` until next publish — call out in the reply so the user knows to republish.)
+- No changes to component code, hrefs, or the fetch-to-blob shim — those are all correct.
+- No changes to the zip contents — verified valid.
