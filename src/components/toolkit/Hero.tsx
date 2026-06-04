@@ -36,6 +36,15 @@ export function Hero() {
         <p className="mt-5 max-w-xl text-sm leading-relaxed text-ex-white/60">
           Brand guidelines and downloadable files in one place.
         </p>
+
+        {/* Primary CTA */}
+        <a
+          href="/downloads/EXPOSURE%20Brand%20Guide.pdf"
+          download="EXPOSURE Brand Guide.pdf"
+          className="mt-8 inline-flex items-center gap-2 border border-ex-white/25 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors duration-150 hover:border-ex-red hover:bg-ex-red hover:text-ex-white active:bg-ex-red/80 active:translate-y-px focus-visible:outline-none focus-visible:border-ex-red"
+        >
+          Download brand guide
+        </a>
       </motion.div>
     </section>
   );
