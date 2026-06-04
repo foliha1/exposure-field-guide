@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "EXPOSURE Brand Toolkit" },
+      { name: "description", content: "A single-page brand toolkit for EXPOSURE by 29029, providing brand intent and downloadable assets." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "EXPOSURE Brand Toolkit" },
+      { property: "og:description", content: "A single-page brand toolkit for EXPOSURE by 29029, providing brand intent and downloadable assets." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "EXPOSURE Brand Toolkit" },
+      { name: "twitter:description", content: "A single-page brand toolkit for EXPOSURE by 29029, providing brand intent and downloadable assets." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e35b09fa-d893-44db-bcc9-2828162c9d99/id-preview-2892fc70--f28c4b41-c065-49a6-a328-20dfb3c3513e.lovable.app-1780580355823.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e35b09fa-d893-44db-bcc9-2828162c9d99/id-preview-2892fc70--f28c4b41-c065-49a6-a328-20dfb3c3513e.lovable.app-1780580355823.png" },
     ],
     links: [
       {
