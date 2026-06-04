@@ -15,14 +15,12 @@ function SwatchTile({
   rgb,
   fg,
   onCopy,
-  copied,
 }: {
   name: string;
   hex: string;
   rgb: string;
   fg: string;
   onCopy: () => void;
-  copied: boolean;
 }) {
   return (
     <button
@@ -33,18 +31,6 @@ function SwatchTile({
         color: fg,
       }}
     >
-      {/* Copied confirmation pill (top-right) */}
-      <span
-        aria-live="polite"
-        className={`absolute right-3 top-3 select-none whitespace-nowrap px-2 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] transition-opacity duration-150 md:right-4 md:top-4 ${copied ? "opacity-100" : "opacity-0"}`}
-        style={{
-          backgroundColor: fg,
-          color: hex,
-          borderRadius: 9999,
-        }}
-      >
-        Copied
-      </span>
       {/* Bottom-left spec stack */}
       <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5">
         <div className="flex flex-col gap-[3px] font-sans text-[11px] leading-[1.35]">
@@ -123,7 +109,6 @@ export function ColorSection() {
             <SwatchTile
               key={c.hex}
               {...c}
-              copied={copiedHex === c.hex}
               onCopy={() => handleCopy(c.hex)}
             />
           ))}
@@ -132,32 +117,30 @@ export function ColorSection() {
 
       {/* Color ratio */}
       <Reveal delay={0.06}>
-        <div className="mt-14 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-3">
+        <div className="mt-14">
+          <div className="flex h-10 w-full overflow-hidden">
+            {colors.map((c) => (
+              <div
+                key={c.hex}
+                className="flex items-center justify-center"
+                style={{ width: `${c.fr}%`, backgroundColor: c.hex }}
+              >
+                <span
+                  className="text-xs font-bold tabular-nums tracking-wider"
+                  style={{ color: c.fg }}
+                >
+                  {c.fr}%
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 max-w-xl">
             <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-ex-red">
               Color Ratio
             </span>
-            <p className="mt-3 text-sm leading-relaxed text-ex-black/65">
+            <p className="mt-2 text-sm leading-relaxed text-ex-black/65">
               Roughly equal off-black and off-white grounds, a measured amount of red, and only a touch of gold — held across any surface.
             </p>
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <div className="flex h-10 w-full overflow-hidden">
-              {colors.map((c) => (
-                <div
-                  key={c.hex}
-                  className="flex items-center justify-center"
-                  style={{ width: `${c.fr}%`, backgroundColor: c.hex }}
-                >
-                  <span
-                    className="text-xs font-bold tabular-nums tracking-wider"
-                    style={{ color: c.fg }}
-                  >
-                    {c.fr}%
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </Reveal>
@@ -169,7 +152,7 @@ export function ColorSection() {
         className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-[opacity,background-color] duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"} ${copiedHex ? "bg-ex-black" : "bg-ex-red"}`}
         style={{ borderRadius: 9999 }}
       >
-        {copiedHex ? `Copied ${copiedHex}` : "Copy Hex"}
+        {copiedHex ? "COPIED" : "Copy Hex"}
       </div>
 
       {/* Caption */}
