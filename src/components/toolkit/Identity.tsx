@@ -142,6 +142,7 @@ export function Identity() {
               download={lockupFile}
               aria-label={`Download ${lockupFile}`}
               className={markCell}
+              onClick={(e) => handleDownload(e, lockupSrc, lockupFile)}
               {...cellHandlers}
             >
               <img
@@ -164,6 +165,7 @@ export function Identity() {
                 download={wordmarkFile}
                 aria-label={`Download ${wordmarkFile}`}
                 className={markCell}
+                onClick={(e) => handleDownload(e, wordmarkSrc, wordmarkFile)}
                 {...cellHandlers}
               >
                 <img
@@ -184,6 +186,7 @@ export function Identity() {
                 download={lockupTriFile}
                 aria-label={`Download ${lockupTriFile}`}
                 className={markCell}
+                onClick={(e) => handleDownload(e, lockupTriSrc, lockupTriFile)}
                 {...cellHandlers}
               >
                 <img
