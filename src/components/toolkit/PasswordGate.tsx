@@ -1,7 +1,8 @@
 import { useEffect, useState, type ReactNode, type FormEvent } from "react";
 import exposureLight from "@/assets/logos/EXPOSURE_Light.svg.asset.json";
 
-const STORAGE_KEY = "ex-toolkit-unlocked";
+const LOCAL_KEY = "ex-toolkit-unlocked";
+const SESSION_KEY = "ex-toolkit-unlocked-session";
 const PASSWORD = "EXPOSUREKIT26";
 
 export function PasswordGate({ children }: { children: ReactNode }) {
@@ -9,11 +10,18 @@ export function PasswordGate({ children }: { children: ReactNode }) {
   const [unlocked, setUnlocked] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+  const [remember, setRemember] = useState(true);
 
   useEffect(() => {
     setMounted(true);
     try {
-      if (localStorage.getItem(STORAGE_KEY) === "1") setUnlocked(true);
+      if (localStorage.getItem(LOCAL_KEY) === "1") {
+        setUnlocked(true);
+        setRemember(true);
+      } else if (sessionStorage.getItem(SESSION_KEY) === "1") {
+        setUnlocked(true);
+        setRemember(false);
+      }
     } catch {
       // ignore
     }
@@ -29,7 +37,13 @@ export function PasswordGate({ children }: { children: ReactNode }) {
     e.preventDefault();
     if (value.trim() === PASSWORD) {
       try {
-        localStorage.setItem(STORAGE_KEY, "1");
+        if (remember) {
+          localStorage.setItem(LOCAL_KEY, "1");
+          sessionStorage.removeItem(SESSION_KEY);
+        } else {
+          sessionStorage.setItem(SESSION_KEY, "1");
+          localStorage.removeItem(LOCAL_KEY);
+        }
       } catch {
         // ignore
       }
@@ -83,6 +97,19 @@ export function PasswordGate({ children }: { children: ReactNode }) {
               Incorrect password
             </p>
           )}
+
+          <label className="flex cursor-pointer items-center gap-2 select-none">
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+              className="h-3.5 w-3.5 border-ex-white/30 bg-transparent accent-ex-red"
+            />
+            <span className="text-[11px] uppercase tracking-[0.22em] text-ex-white/55">
+              Remember this device
+            </span>
+          </label>
+
           <button
             type="submit"
             className="w-full bg-ex-red px-4 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-ex-white transition-colors hover:bg-ex-red/90 active:translate-y-px"
