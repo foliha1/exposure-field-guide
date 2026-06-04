@@ -15,12 +15,14 @@ function SwatchTile({
   rgb,
   fg,
   onCopy,
+  copied,
 }: {
   name: string;
   hex: string;
   rgb: string;
   fg: string;
   onCopy: () => void;
+  copied: boolean;
 }) {
   return (
     <button
@@ -31,6 +33,18 @@ function SwatchTile({
         color: fg,
       }}
     >
+      {/* Copied confirmation pill (top-right) */}
+      <span
+        aria-live="polite"
+        className={`absolute right-3 top-3 select-none whitespace-nowrap px-2 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] transition-opacity duration-150 md:right-4 md:top-4 ${copied ? "opacity-100" : "opacity-0"}`}
+        style={{
+          backgroundColor: fg,
+          color: hex,
+          borderRadius: 9999,
+        }}
+      >
+        Copied
+      </span>
       {/* Bottom-left spec stack */}
       <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5">
         <div className="flex flex-col gap-[3px] font-sans text-[11px] leading-[1.35]">
@@ -55,6 +69,7 @@ function SwatchTile({
 export function ColorSection() {
   const tagRef = useRef<HTMLDivElement>(null);
   const [tagVisible, setTagVisible] = useState(false);
+  const [copiedHex, setCopiedHex] = useState<string | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -84,6 +99,10 @@ export function ColorSection() {
   const handleCopy = useCallback(
     (hex: string) => {
       navigator.clipboard.writeText(hex).catch(() => {});
+      setCopiedHex(hex);
+      window.setTimeout(() => {
+        setCopiedHex((current) => (current === hex ? null : current));
+      }, 1400);
     },
     []
   );
@@ -104,6 +123,7 @@ export function ColorSection() {
             <SwatchTile
               key={c.hex}
               {...c}
+              copied={copiedHex === c.hex}
               onCopy={() => handleCopy(c.hex)}
             />
           ))}
@@ -146,10 +166,10 @@ export function ColorSection() {
       <div
         ref={tagRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap bg-ex-red px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-opacity duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"}`}
+        className={`pointer-events-none fixed left-0 top-0 z-50 hidden select-none whitespace-nowrap px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-ex-white transition-[opacity,background-color] duration-150 md:block ${tagVisible ? "opacity-100" : "opacity-0"} ${copiedHex ? "bg-ex-black" : "bg-ex-red"}`}
         style={{ borderRadius: 9999 }}
       >
-        Copy Hex
+        {copiedHex ? `Copied ${copiedHex}` : "Copy Hex"}
       </div>
 
       {/* Caption */}
